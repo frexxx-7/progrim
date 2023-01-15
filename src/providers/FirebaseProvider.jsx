@@ -1,10 +1,9 @@
-import React, { createContext, useMemo, useState } from 'react'
+import React, { createContext, useMemo } from 'react'
 import { initializeApp } from 'firebase/app';
 import { getAuth } from "firebase/auth";
 import { getDatabase } from "firebase/database";
 import { getStorage } from "firebase/storage";
 import { useAuthState } from 'react-firebase-hooks/auth';
-import useUser from '../hooks/useUser';
 
 const firebaseConfig = {
   apiKey: "AIzaSyCMaYLvzgGSK1gRxhuRjiP6gH0k1Dx9MpU",

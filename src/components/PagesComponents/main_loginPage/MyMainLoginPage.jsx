@@ -7,8 +7,8 @@ import { signOut } from "firebase/auth"
 import { Link } from 'react-router-dom'
 import useFirebase from '../../../hooks/useFirebase'
 
-export default function LoginPage({ComponentCh}) {
-  const {auth} = useFirebase()
+export default function LoginPage({ ComponentCh }) {
+  const { auth } = useFirebase()
 
   return (
     <main className={classes.main}>
@@ -16,11 +16,8 @@ export default function LoginPage({ComponentCh}) {
         <a
           onClick={() => {
             signOut(auth)
-            localStorage.clear()
-            location.reload()
           }}
-          className={classes.main_loginPage_exit
-          }
+          className={classes.main_loginPage_exit}
         >
           Log out
         </a>

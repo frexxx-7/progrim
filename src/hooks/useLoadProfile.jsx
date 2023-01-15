@@ -1,18 +1,16 @@
 import { onValue, ref } from 'firebase/database'
 import { useMemo } from 'react'
-import useFirebase from './useFirebase'
 
-const useLoadMyProfile = (setMyProfile, id) => {
-  const { database} = useFirebase()
-
+const useLoadProfile = (database, setProfile, id, setLoading) => {
   useMemo(() => {
     if (id) {
       const userData = ref(database, 'users/' + id + '/userData');
       onValue(userData, (snapshot) => {
-        setMyProfile(snapshot.val())
+        setProfile(snapshot.val())
+        setLoading && setLoading(false)
       });
     }
   }, [id])
 }
 
-export default useLoadMyProfile
+export default useLoadProfile

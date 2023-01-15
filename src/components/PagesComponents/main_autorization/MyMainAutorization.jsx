@@ -17,6 +17,7 @@ export default function MyMainAutorization() {
 
   const [hidePassword, setHidePassword] = useState(false)
   const [inputError, setInputError] = useState('')
+
   const typeText = hidePassword ? 'text' : 'password'
 
   const changeInput = (e) => {
@@ -42,7 +43,7 @@ export default function MyMainAutorization() {
         const user = result.user;
         update(ref(database, 'users/' + user.uid + '/userData'), {
           id: user.uid,
-          name: user.displayName
+          name: user.displayName,
         });
         const userData = ref(database, 'users/' + user.uid + '/userData');
         onValue(userData, async (snapshot) => {
@@ -51,13 +52,14 @@ export default function MyMainAutorization() {
             getDownloadURL(storageRef)
               .then((url) => {
                 update(ref(database, 'users/' + user.uid + '/userData'), {
-                  photo: url
+                  photo: url,
+                  date: user.metadata.creationTime,
+                  status: ''
                 });
               })
           }
         });
         useUser(user)
-        location.reload()
       })
       .catch((error) => {
         setInputError(error.message)
@@ -71,7 +73,6 @@ export default function MyMainAutorization() {
       .then(async (userCredential) => {
         const user = userCredential.user
         useUser(user)
-        location.reload()
       })
       .catch((error) => {
         setInputError(error.message)

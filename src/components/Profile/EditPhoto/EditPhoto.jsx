@@ -1,14 +1,11 @@
 import { ref, update } from 'firebase/database'
 import { ref as refSt, uploadBytes, getDownloadURL } from 'firebase/storage'
-import React, { useContext, useEffect, useState } from 'react'
-import useFirebase from '../../hooks/useFirebase'
+import React from 'react'
+import useFirebase from '../../../hooks/useFirebase'
 import classes from './EditPhoto.module.scss'
 
 const EditPhoto = ({ photo, editing = false, id, setChangeImage, changeImages }) => {
   const { storage, database } = useFirebase()
-
-  const [image, setImage] = useState()
-
 
   const changeImage = (e) => {
     const fileElem = document.getElementById("fileElem");
@@ -17,7 +14,7 @@ const EditPhoto = ({ photo, editing = false, id, setChangeImage, changeImages })
     }
   }
 
-  const chooseImage = (files) => {
+  const chooseImage = async (files) => {
     const avatar = document.getElementById("avatar");
     const file = files[0]
     if (!file.type.startsWith('image/')) { return '' }
@@ -29,7 +26,8 @@ const EditPhoto = ({ photo, editing = false, id, setChangeImage, changeImages })
       };
     })(avatar);
     reader.readAsDataURL(file);
-    loadPhotoIntoBase(file)
+    await loadPhotoIntoBase(file)
+    loadPhoto()
   }
 
   const loadPhotoIntoBase = async (file) => {
@@ -43,17 +41,13 @@ const EditPhoto = ({ photo, editing = false, id, setChangeImage, changeImages })
       const storageRef = refSt(storage, `avatars/${id}`)
       getDownloadURL(storageRef)
         .then((url) => {
-          setImage(url)
           update(ref(database, 'users/' + id + '/userData'), {
-            photo:url
+            photo: url
           });
         })
     }
   }
 
-  useEffect(() => {
-    loadPhoto()
-  }, [changeImage])
 
   return (
     <div className={classes.editPhoto}>
@@ -80,4 +74,4 @@ const EditPhoto = ({ photo, editing = false, id, setChangeImage, changeImages })
   )
 }
 
-export default EditPhoto
+export default React.memo(EditPhoto)

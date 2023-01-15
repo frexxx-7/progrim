@@ -1,9 +1,8 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React from 'react'
 import classes from './Friends.module.scss'
 import { Link } from 'react-router-dom'
 
 const Friends = ({ ComponentCh }) => {
-
   return (
     <div className={classes.friends}>
       <div className={classes.friendsList}>

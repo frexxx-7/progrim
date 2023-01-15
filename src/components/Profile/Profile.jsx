@@ -1,56 +1,34 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, {useState } from 'react'
 import classes from './Profile.module.scss'
-import { ref, set, onValue, update, push, child } from "firebase/database";
 import LoaderTwo from '../UI/LoaderTwo'
 import MyModal from '../UI/MyModal/MyModal'
 import PostsList from '../PostsComponents/PostsList/PostsList'
-import EditPhoto from '../EditPhoto/EditPhoto'
+import EditPhoto from './EditPhoto/EditPhoto'
 import friends from "../../assets/images/friends.png"
 import ViewFriends from '../FriendsComponents/ViewFriends/ViewFriends'
+import useAddPosts from '../../hooks/useAddPosts';
+import useLoadPosts from '../../hooks/useLoadPosts';
+import useLoadFriends from '../../hooks/useLoadFriends';
+import useFirebase from '../../hooks/useFirebase'
 
 const Profile = ({ id, name, photo, status, userID }) => {
-  const { database } = useContext(Context)
+  const { database } = useFirebase()
 
   const [loadingPosts, setLoadingPosts] = useState(true)
+  const [loadingFriends, setLoadingFriends] = useState(true)
+  
   const [modalPhoto, setModalPhoto] = useState(false)
-  const [posts, setPosts] = useState({})
-  const [textPost, setTextPost] = useState('')
-  const [isLoading, setIsLoading] = useState(true)
-  const [frNumbers, setFrNumbers] = useState({})
   const [modalFriends, setModalFriends] = useState(false)
 
+  const [posts, setPosts] = useState({})
+  const [textPost, setTextPost] = useState('')
+  const [frNumbers, setFrNumbers] = useState({})
 
-  const loadPosts = () => {
-    const userData = ref(database, 'users/' + id + '/posts');
-    onValue(userData, (snapshot) => {
-      setPosts(snapshot.val())
-      setLoadingPosts(false)
-      setIsLoading(false)
-    });
-  }
-  const loadFriend = () => {
-    const userData = ref(database, 'users/' + id + '/friends');
-    onValue(userData, (snapshot) => {
-      setFrNumbers(snapshot.val())
-    });
-  }
+  useLoadPosts(database, id, setPosts, setLoadingPosts)
 
-  useEffect(() => {
-    loadPosts()
-    loadFriend()
-  }, [id])
+  useLoadFriends(database, id, setFrNumbers, setLoadingFriends)
 
-  const addPost = () => {
-    const newPostsID = push(child(ref(database, 'users/' + id, '/posts'), ' ')).key
-    update(ref(database, 'users/' + id + '/posts/' + newPostsID), {
-      author: userID,
-      body: textPost,
-      date: Date.now()
-    });
-    setTextPost('')
-  }
-
-  if (isLoading)
+  if (loadingPosts || loadingFriends)
     return <LoaderTwo />
 
   return (
@@ -76,7 +54,7 @@ const Profile = ({ id, name, photo, status, userID }) => {
               <p className={classes.friendNumber}>{frNumbers && Object.keys(frNumbers).length || 0}</p>
             </a>
             <MyModal visible={modalFriends} setVisible={setModalFriends}>
-              <ViewFriends id={id}/>
+              <ViewFriends id={id} setVisible={setModalFriends}/>
             </MyModal>
           </div>
         </div>
@@ -93,7 +71,9 @@ const Profile = ({ id, name, photo, status, userID }) => {
           />
           <button
             className={classes.createPostsButton}
-            onClick={addPost}
+            onClick={() => {
+              useAddPosts(database, id, setTextPost, textPost, userID)
+            }}
           >
             Create post
           </button>

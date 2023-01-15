@@ -1,28 +1,17 @@
-import React, { useContext, useEffect, useState } from 'react'
-import { onValue, ref } from 'firebase/database'
-import { useAuthState } from 'react-firebase-hooks/auth'
+import React, { useState } from 'react'
 import classes from './Friends/Friends.module.scss'
 import LoaderTwo from '../UI/LoaderTwo'
 import UsersList from './UsersList/UsersList'
+import useFirebase from '../../hooks/useFirebase'
+import useLoadFriends from '../../hooks/useLoadFriends'
 
-const SearchFriends = () => {
-  const { auth } = useContext(Context)
-  const [user] = useAuthState(auth)
-  const { database } = useContext(Context)
+const SearchFriends = ({idUser}) => {
+  const { database } = useFirebase()
+
   const [friends, setFriends] = useState({})
   const [loadingFriend, setLoadingFriend] = useState(true)
 
-  const loadFriend = () => {
-    const userData = ref(database, 'users/' + user.uid + '/friends');
-    onValue(userData, (snapshot) => {
-      setFriends(snapshot.val())
-      setLoadingFriend(false)
-    });
-  }
-
-  useEffect(() => {
-    loadFriend()
-  }, [])
+  useLoadFriends(database, idUser, setFriends, setLoadingFriend)
 
   return (
     <>
@@ -32,11 +21,13 @@ const SearchFriends = () => {
 
       <div className={classes.frinedsListFriend}>
         {
-          loadingFriend ? <LoaderTwo /> : <UsersList myFriends={ friends && Object.entries(friends).map(([key, value]) => value)}/>
+          loadingFriend
+            ? <LoaderTwo />
+            : <UsersList myFriends={friends && Object.entries(friends).map(([value]) => value)} idUser={idUser}/>
         }
       </div>
     </>
   )
 }
 
-export default SearchFriends
+export default React.memo(SearchFriends)

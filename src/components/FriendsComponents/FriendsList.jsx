@@ -1,28 +1,21 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, {useState } from 'react'
 import LoaderTwo from '../UI/LoaderTwo'
 import classes from './Friends/Friends.module.scss'
-import { onValue, ref } from 'firebase/database'
 import FriendItem from './FriendItem'
 import useFirebase from '../../hooks/useFirebase'
+import useLoadFriends from '../../hooks/useLoadFriends'
 
 
-const FriendsList = ({id, deleteFr=true}) => {
+const FriendsList = ({id, deleteFr=true, setVisible}) => {
   const { database } = useFirebase()
+
   const [friends, setFriends] = useState({})
   const [loadingFriend, setLoadingFriend] = useState(true)
 
-  const loadFriend = () => {
-    const userData = ref(database, 'users/' + id + '/friends');
-    onValue(userData, (snapshot) => {
-      setFriends(snapshot.val())
-      setLoadingFriend(false)
-    });
-  }
+  useLoadFriends(database, id, setFriends, setLoadingFriend)
 
-
-  useEffect(() => {
-    loadFriend()
-  }, [])
+  if (loadingFriend)
+    return <LoaderTwo />
 
   return (
     <>
@@ -32,7 +25,6 @@ const FriendsList = ({id, deleteFr=true}) => {
       <div className={classes.friendListDiv}>
         <div className={classes.allFriends}>
           <div className={classes.frinedsListFriend}>
-            {loadingFriend ? <LoaderTwo /> : ''}
             {!friends
               ?
               <div className={classes.noFriendsDiv}>
@@ -42,7 +34,7 @@ const FriendsList = ({id, deleteFr=true}) => {
               </div>
               :
               Object.entries(friends).map(([key, value]) => (
-                <FriendItem key={key} idFriend={value} deleteFr={deleteFr}/>
+                <FriendItem key={key} idFriend={value} deleteFr={deleteFr} idUser={id} setVisible={setVisible}/>
               ))
             }
           </div>
@@ -52,4 +44,4 @@ const FriendsList = ({id, deleteFr=true}) => {
   )
 }
 
-export default FriendsList
+export default React.memo(FriendsList)

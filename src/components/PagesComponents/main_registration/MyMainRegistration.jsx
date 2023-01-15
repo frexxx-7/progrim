@@ -4,11 +4,13 @@ import eye from "../../../assets/images/eye.png"
 import eye2 from "../../../assets/images/eye2.png"
 import { Link } from 'react-router-dom'
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { ref, set } from "firebase/database";
+import { ref, set, update } from "firebase/database";
 import useFirebase from '../../../hooks/useFirebase'
+import { ref as refSt, getDownloadURL } from 'firebase/storage'
+
 
 export default function MyMainRegistration() {
-  const { auth, database} = useFirebase()
+  const { auth, database, storage } = useFirebase()
 
   const [hidePassword, setHidePassword] = useState(false)
   const [input1, setInput1] = useState('')
@@ -46,8 +48,17 @@ export default function MyMainRegistration() {
           set(ref(database, 'users/' + user.uid + '/userData'), {
             id: user.uid,
             name: login,
-            status: ''
-          });
+            status: '',
+            date: user.metadata.creationTime
+          })
+
+          const storageRef = refSt(storage, `avatars/no-avatar.jpg`)
+          getDownloadURL(storageRef)
+            .then((url) => {
+              update(ref(database, 'users/' + user.uid + '/userData'), {
+                photo: url,
+              });
+            })
         })
         .catch((error) => {
           setInputError(error.message)

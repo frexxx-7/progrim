@@ -1,24 +1,19 @@
-import { child, push, ref, update } from 'firebase/database'
-import React, { useContext, useState } from 'react'
-import { useAuthState } from 'react-firebase-hooks/auth'
+import { ref, update } from 'firebase/database'
+import React from 'react'
 import { NavLink } from 'react-router-dom'
 import classes from './UserItem.module.scss'
-import checkMark from "../../../assets/images/checkMark.png"
+import useFirebase from '../../../hooks/useFirebase'
 
-const UserItem = ({ id, name, photo, status }) => {
-  const { database } = useContext(Context)
-  const { auth } = useContext(Context)
-  const [user] = useAuthState(auth)
-  const [added, setAdded] = useState(false)
+const UserItem = ({ id, name, photo, status, idUser }) => {
+  const { database } = useFirebase()
 
   const addFriend = () => {
-    update(ref(database, 'users/' + user.uid + '/friends/'), {
+    update(ref(database, 'users/' + idUser + '/friends/'), {
       [`${id}`]:id
     });
     update(ref(database, 'users/' + id + '/friends/'), {
-      [`${user.uid}`]:user.uid
+      [`${idUser}`]:idUser
     });
-    setAdded(true)
   }
 
   return (
@@ -34,14 +29,11 @@ const UserItem = ({ id, name, photo, status }) => {
       </NavLink>
 
       <div className={classes.add}>
-        { !added
-          ? <a className={classes.addButton} onClick={addFriend}>Add</a>
-          : <img className={classes.checkMark} src={checkMark} alt="CheckMark" />
-        }
+        <a className={classes.addButton} onClick={addFriend}>Add</a>
       </div>
 
     </div>
   )
 }
 
-export default UserItem
+export default React.memo(UserItem)

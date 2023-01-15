@@ -1,32 +1,23 @@
-import { onValue, ref, remove } from 'firebase/database'
-import React, { useContext, useEffect, useState } from 'react'
-import { useAuthState } from 'react-firebase-hooks/auth'
+import { ref, remove } from 'firebase/database'
+import React, { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import classes from './UserItem/UserItem.module.scss'
 import classes2 from './Friends/Friends.module.scss'
 import LoaderTwo from '../UI/LoaderTwo'
 import useFirebase from '../../hooks/useFirebase'
+import useLoadProfile from '../../hooks/useLoadProfile'
 
-const FriendItem = ({idFriend, deleteFr }) => {
+const FriendItem = ({ idFriend, deleteFr, idUser, setVisible }) => {
+  const { database } = useFirebase()
+
   const [profile, setProfile] = useState({})
-  const { auth, database, loadUser } = useFirebase()
   const [isLoading, setIsLoading] = useState(true)
-  const [user] = loadUser()
-  const loadProfile = () => {
-    const userData = ref(database, 'users/' + idFriend + '/userData');
-    onValue(userData, (snapshot) => {
-      setProfile(snapshot.val())
-      setIsLoading(false)
-    });
-  }
 
-  useEffect(() => {
-    loadProfile()
-  }, [])
+  useLoadProfile(database, setProfile, idFriend, setIsLoading)
 
   const deleteFriend = () => {
-    remove(ref(database, 'users/' + user.uid + '/friends/' + idFriend))
-    remove(ref(database, 'users/' + idFriend + '/friends/' + user.uid))
+    remove(ref(database, 'users/' + idUser + '/friends/' + idFriend))
+    remove(ref(database, 'users/' + idFriend + '/friends/' + idUser))
   }
 
   if (isLoading)
@@ -34,7 +25,7 @@ const FriendItem = ({idFriend, deleteFr }) => {
 
   return (
     <div className={classes.user}>
-      <NavLink to={profile.id !== user.uid ? `/profile/${profile.id}` : `/profile`}>
+      <NavLink to={`/profile/${profile.id}`} onClick={()=>setVisible && setVisible(false)}>
         <div className={classes.photo}>
           <img src={profile.photo} alt="photo" />
         </div>
@@ -55,4 +46,4 @@ const FriendItem = ({idFriend, deleteFr }) => {
   )
 }
 
-export default FriendItem
+export default React.memo(FriendItem)

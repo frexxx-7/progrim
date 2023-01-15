@@ -1,9 +1,9 @@
 import React from 'react'
 import FriendsList from '../FriendsList'
 
-const ViewFriends = ({id}) => {
+const ViewFriends = ({id, setVisible}) => {
   return (
-    <FriendsList id={id} deleteFr={false}/>
+    <FriendsList id={id} deleteFr={false} setVisible={setVisible}/>
   )
 }
 
