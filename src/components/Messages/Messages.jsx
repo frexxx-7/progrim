@@ -1,19 +1,18 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import classes from './Messages.module.scss'
 import chats from '../../assets/images/chats.png'
-import { useAuthState } from 'react-firebase-hooks/auth'
 import { onValue, ref } from 'firebase/database'
-import LoaderTwo from '../LoaderTwo'
+import LoaderTwo from '../UI/LoaderTwo'
+import useFirebase from '../../hooks/useFirebase'
 
-const Messages = () => {
-  const { auth } = useContext(Context)
-  const [user] = useAuthState(auth)
-  const { database } = useContext(Context)
+const Messages = ({userId}) => {
+  const { database } = useFirebase()
+
   const [messages, setMessages] = useState({})
   const [loadingMessages, setLoadingMessages] = useState(true)
 
   const loadMessages = () => {
-    const userData = ref(database, 'users/' + user.uid + '/messages');
+    const userData = ref(database, 'users/' + userId + '/messages');
     onValue(userData, (snapshot) => {
       setMessages(snapshot.val())
       setLoadingMessages(false)
@@ -45,4 +44,4 @@ const Messages = () => {
   )
 }
 
-export default Messages
+export default React.memo(Messages)

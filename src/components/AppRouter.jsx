@@ -1,35 +1,27 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Navigate, Route, Routes } from 'react-router-dom'
-import { privateRoutes, publicRoutes } from '../router/routes'
-import useFirebase from '../hooks/useFirebase'
-import useLoadMyProfile from '../hooks/useLoadMyProfile'
+import { publicRoutes } from '../router/routes'
 import MyProfile from "../components/Profile/MyProfile"
-import LoginPage from './main_loginPage/MyMainLoginPage'
-import Friends from './Friends/Friends'
-import FriendsList from './FriendsList'
-
+import LoginPage from './PagesComponents/main_loginPage/MyMainLoginPage'
+import Friends from './FriendsComponents/Friends/Friends'
+import FriendsList from './FriendsComponents/FriendsList'
+import useUser from '../hooks/useUser'
+import SearchFriends from "./FriendsComponents/SearchFriends"
+import Messages from "./Messages/Messages"
+import LoadProfile from "./Profile/LoadProfile"
 
 const AppRouter = () => {
-  const [myProfile, setMyProfile] = useState({})
-
-  const {loadUser} = useFirebase()
-  const [user] = loadUser()
-  
-  user && useLoadMyProfile(setMyProfile, user.uid)
+  const user = useUser()
 
   return (
     user
       ?
       <Routes>
+
         <Route path='/profile' element={<LoginPage
-          ComponentCh={<MyProfile
-            id={myProfile.id}
-            name={myProfile.name}
-            photo={myProfile.photo}
-            status={myProfile.status}
-            date={user.metadata.creationTime}
-          />}
+          ComponentCh={<MyProfile user={user} />}
         />} />
+
         <Route path='/friends' element={<LoginPage
           ComponentCh={<Friends
             ComponentCh={<FriendsList
@@ -37,13 +29,20 @@ const AppRouter = () => {
             />}
           />}
         />} />
-        {privateRoutes.map((route, index) =>
-          <Route
-            path={route.path}
-            element={route.component}
-            key={index}
-          />
-        )}
+
+        <Route path='/friends/search' element={<LoginPage
+          ComponentCh={<Friends
+            ComponentCh={<SearchFriends idUser={user.uid} />}
+          />}
+        />} />
+
+        <Route path='/messages' element={<LoginPage
+          ComponentCh={<Messages userId={user.uid} />}
+        />} />
+
+        <Route path='/profile/:id' element={<LoginPage
+          ComponentCh={<LoadProfile userId={user.uid} />}
+        />} />
 
         <Route path="*" element={<Navigate to={`/profile`} />} />
       </Routes>
@@ -62,4 +61,4 @@ const AppRouter = () => {
   )
 }
 
-export default AppRouter
+export default React.memo(AppRouter)

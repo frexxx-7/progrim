@@ -1,0 +1,110 @@
+@import '../../../assets/scss/mixins.scss';
+@import '../../../assets/scss/variables.scss';
+
+.friends {
+  width: 63vw;
+  height: 79.9vh;
+  display: flex;
+  border: 1px solid rgba(102, 252, 241, 0.7);
+  border-radius: 30px;
+  box-sizing: border-box;
+
+  .friendsList {
+    height: 100%;
+    width: 70%;
+    border-right: 1px solid rgba(102, 252, 241, 0.7);
+
+    .frinedsListFriend {
+      height: 90%;
+    }
+  }
+
+  .friendsNavbar {
+    width: 30%;
+
+    .friendsNavbarDiv {
+      min-height: 30%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      .friendsButtons {
+        list-style-type: none;
+        text-align: left;
+        margin: 0;
+        padding: 0;
+        display: inline-block;
+        width: 80%;
+        height: 20vh;
+
+        li {
+          border: 1px solid rgba(102, 252, 241, 0.7);
+          border-radius: 15px;
+          padding: 0.3rem;
+          margin-top: 1rem;
+
+          a {
+            @include font;
+            font-size: 1.3rem;
+            text-decoration: none;
+            display: block;
+
+            &:hover {
+              color: rgba(102, 252, 241, 0.7);
+            }
+          }
+        }
+      }
+    }
+  }
+}
+.friendListH2 {
+  display: flex;
+  height: 10%;
+  border-bottom: 1px solid rgba(102, 252, 241, 0.7);
+  justify-content: center;
+  align-items: center;
+
+  h2 {
+    @include font;
+  }
+}
+
+.friendListDiv {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+
+  .allFriends {
+    width: 90%;
+    height: 90%;
+    display: flex;
+    margin-top: 1rem;
+    flex-direction: column;
+  }
+}
+.noFriendsDiv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+
+  .noFriends {
+    @include font;
+    margin: 0;
+  }
+}
+.deleteDiv {
+  display: flex;
+  align-items: center;
+  width: 25%;
+  justify-content: center;
+
+  .delete {
+    @include button;
+    display: inline-block;
+    font-size: .8rem;
+    margin: 0;
+  }
+}

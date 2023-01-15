@@ -2,9 +2,9 @@ import React from 'react'
 import { useAuthState } from 'react-firebase-hooks/auth'
 import { BrowserRouter } from 'react-router-dom'
 import AppRouter from './components/AppRouter'
-import MyFooter from './components/footer/MyFooter'
-import MyHeader from "./components/header/MyHeader"
-import Loader from './components/Loader'
+import MyFooter from './components/UI/footer/MyFooter'
+import MyHeader from "./components/UI/header/MyHeader"
+import Loader from './components/UI/Loader'
 import useFirebase from './hooks/useFirebase'
 
 function App() {

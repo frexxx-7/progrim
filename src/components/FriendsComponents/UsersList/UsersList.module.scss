@@ -1,0 +1,17 @@
+@import '../../../assets/scss/mixins.scss';
+@import '../../../assets/scss/variables.scss';
+
+.usersList {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+
+  .allUsers {
+    width: 90%;
+    height: 90%;
+    display: flex;
+    margin-top: 1rem;
+    flex-direction: column;
+  }
+}
