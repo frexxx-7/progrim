@@ -2,12 +2,12 @@ import { child, onValue, push, ref, update } from 'firebase/database'
 import React, { useContext, useEffect, useState } from 'react'
 import EditPhoto from '../EditPhoto/EditPhoto'
 import EditProfile from '../EditProfile/EditProfile'
-import LoaderTwo from '../LoaderTwo'
-import MyModal from '../MyModal/MyModal'
-import PostsList from '../PostsList/PostsList'
+import LoaderTwo from '../UI/LoaderTwo'
+import MyModal from '../UI/MyModal/MyModal'
+import PostsList from '../PostsComponents/PostsList/PostsList'
 import classes from './Profile.module.scss'
 import friends from "../../assets/images/friends.png"
-import ViewFriends from '../ViewFriends/ViewFriends'
+import ViewFriends from '../FriendsComponents/ViewFriends/ViewFriends'
 import useFirebase from '../../hooks/useFirebase'
 
 const MyProfile = ({ id, name, photo, status, date }) => {

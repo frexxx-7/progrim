@@ -4,9 +4,9 @@ import { privateRoutes, publicRoutes } from '../router/routes'
 import useFirebase from '../hooks/useFirebase'
 import useLoadMyProfile from '../hooks/useLoadMyProfile'
 import MyProfile from "../components/Profile/MyProfile"
-import LoginPage from './main_loginPage/MyMainLoginPage'
-import Friends from './Friends/Friends'
-import FriendsList from './FriendsList'
+import LoginPage from './PagesComponents/main_loginPage/MyMainLoginPage'
+import Friends from './FriendsComponents/Friends/Friends'
+import FriendsList from './FriendsComponents/FriendsList'
 
 
 const AppRouter = () => {

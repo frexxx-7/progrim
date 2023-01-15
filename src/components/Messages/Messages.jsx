@@ -3,7 +3,7 @@ import classes from './Messages.module.scss'
 import chats from '../../assets/images/chats.png'
 import { useAuthState } from 'react-firebase-hooks/auth'
 import { onValue, ref } from 'firebase/database'
-import LoaderTwo from '../LoaderTwo'
+import LoaderTwo from '../UI/LoaderTwo'
 
 const Messages = () => {
   const { auth } = useContext(Context)

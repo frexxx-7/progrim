@@ -1,12 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react'
 import classes from './Profile.module.scss'
 import { ref, set, onValue, update, push, child } from "firebase/database";
-import LoaderTwo from '../LoaderTwo'
-import MyModal from '../MyModal/MyModal'
-import PostsList from '../PostsList/PostsList'
+import LoaderTwo from '../UI/LoaderTwo'
+import MyModal from '../UI/MyModal/MyModal'
+import PostsList from '../PostsComponents/PostsList/PostsList'
 import EditPhoto from '../EditPhoto/EditPhoto'
 import friends from "../../assets/images/friends.png"
-import ViewFriends from '../ViewFriends/ViewFriends'
+import ViewFriends from '../FriendsComponents/ViewFriends/ViewFriends'
 
 const Profile = ({ id, name, photo, status, userID }) => {
   const { database } = useContext(Context)

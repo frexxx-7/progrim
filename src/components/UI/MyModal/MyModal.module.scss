@@ -1,0 +1,27 @@
+@import '../../../assets/scss/mixins.scss';
+@import '../../../assets/scss/variables.scss';
+
+.myModal {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background: rgba(0,0,0,0.5);
+  display: none;
+}
+
+.myModalContent {
+  padding: 25px;
+  background: rgb(31, 40, 51);
+  border-radius: 16px;
+  min-width: 250px;
+  border: 2px solid rgba(102, 252, 241, 0.5);
+  box-shadow: 0 0 20px $border-color;
+}
+
+.myModal.active {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

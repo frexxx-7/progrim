@@ -38,21 +38,21 @@ const EditPhoto = ({ photo, editing = false, id, setChangeImage, changeImages })
     setChangeImage(!changeImages)
   }
 
-  //const loadPhoto = () => {
-  //  if (id) {
-  //    const storageRef = refSt(storage, `avatars/${id}`)
-  //    getDownloadURL(storageRef)
-  //      .then((url) => {
-  //        setImage(url)
-  //        update(ref(database, 'users/' + id + '/userData'), {
-  //          photo:url
-  //        });
-  //      })
-  //  }
-  //}
+  const loadPhoto = () => {
+    if (id) {
+      const storageRef = refSt(storage, `avatars/${id}`)
+      getDownloadURL(storageRef)
+        .then((url) => {
+          setImage(url)
+          update(ref(database, 'users/' + id + '/userData'), {
+            photo:url
+          });
+        })
+    }
+  }
 
   useEffect(() => {
-    //loadPhoto()
+    loadPhoto()
   }, [changeImage])
 
   return (

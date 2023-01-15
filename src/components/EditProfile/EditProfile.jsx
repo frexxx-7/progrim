@@ -2,7 +2,7 @@ import { onValue, ref, update } from 'firebase/database'
 import React, { useContext, useEffect, useState } from 'react'
 import { useAuthState } from 'react-firebase-hooks/auth'
 import useFirebase from '../../hooks/useFirebase'
-import Loader from '../Loader'
+import Loader from '../UI/Loader'
 import classes from './EditProfile.module.scss'
 
 const EditProfile = ({setVisible}) => {

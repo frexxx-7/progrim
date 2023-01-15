@@ -1,10 +1,10 @@
-import LoginPage from "../pages/LoginPage"
+import Friends from "../components/FriendsComponents/Friends/Friends"
+import SearchFriends from "../components/FriendsComponents/SearchFriends"
+import Messages from "../components/Messages/Messages"
+import LoginPage from "../components/PagesComponents/main_loginPage/MyMainLoginPage"
+import LoadProfile from "../components/Profile/LoadProfile"
 import Autorization from "../pages/Autorization"
 import Registration from "../pages/Registration"
-import LoadProfile from "../components/LoadProfile"
-import Messages from "../components/Messages/Messages"
-import Friends from "../components/Friends/Friends"
-import SearchFriends from "../components/SearchFriends"
 
 export const privateRoutes = [
   {
