@@ -28,33 +28,30 @@
       justify-content: center;
       align-items: center;
 
-      .friendsButtons {
-        list-style-type: none;
-        text-align: left;
-        margin: 0;
-        padding: 0;
-        display: inline-block;
-        width: 80%;
-        height: 20vh;
+      
+    }
+  }
+}
+.friendsButtons {
+  list-style-type: none;
+  text-align: left;
+  margin: 0;
+  padding: 0;
+  display: inline-block;
+  width: 80%;
+  height: 20vh;
 
-        li {
-          border: 1px solid rgba(102, 252, 241, 0.7);
-          border-radius: 15px;
-          padding: 0.3rem;
-          margin-top: 1rem;
+  li {
+    border-radius: 15px;
+    padding: 0.3rem;
+    margin-top: 1rem;
 
-          a {
-            @include font;
-            font-size: 1.3rem;
-            text-decoration: none;
-            display: block;
-
-            &:hover {
-              color: rgba(102, 252, 241, 0.7);
-            }
-          }
-        }
-      }
+    a {
+      @include button;
+      font-size: 1.1vw;
+      text-decoration: none;
+      display: block;
+      margin: 0;
     }
   }
 }
@@ -106,5 +103,18 @@
     display: inline-block;
     font-size: .8rem;
     margin: 0;
+  }
+}
+
+@media screen and (max-width: 1130px) {
+  .friends {
+    width:96%;
+  }
+  .friendsButtons {
+    li{
+      a{
+        font-size: 1.5vw;
+      }
+    }
   }
 }

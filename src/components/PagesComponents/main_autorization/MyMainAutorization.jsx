@@ -43,7 +43,6 @@ export default function MyMainAutorization() {
         const user = result.user;
         update(ref(database, 'users/' + user.uid + '/userData'), {
           id: user.uid,
-          name: user.displayName,
         });
         const userData = ref(database, 'users/' + user.uid + '/userData');
         onValue(userData, async (snapshot) => {
@@ -54,6 +53,7 @@ export default function MyMainAutorization() {
                 update(ref(database, 'users/' + user.uid + '/userData'), {
                   photo: url,
                   date: user.metadata.creationTime,
+                  name: user.displayName,
                   status: ''
                 });
               })

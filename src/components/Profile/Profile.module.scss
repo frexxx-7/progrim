@@ -53,7 +53,6 @@
           @include button;
           display: inline-block;
           margin: 1em 1.5em;
-          padding: .3em .5em;
           font-size: .7rem;
         }
       }
@@ -119,13 +118,23 @@
         padding: 2px 5px;
         border-radius: 10px;
       }
-
-      .createPostsButton {
-        @include button;
-        font-size: .9rem;
-        padding: .5rem .6rem;
-        margin-left: .5rem;
-      }
     }
+  }
+}
+.createPostsButton {
+  @include button;
+  font-size: 1.2vw;
+  padding: .5rem .6rem;
+  margin-left: .5rem;
+  width:17%
+}
+@media screen and (max-width: 1130px) {
+  .createPostsButton {
+    font-size: 1.45vw;
+  }
+}
+@media screen and (max-width: 860px) {
+  .createPostsButton {
+    font-size: 1.55vw;
   }
 }

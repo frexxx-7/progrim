@@ -2,12 +2,14 @@
 @import '../../../assets/scss/variables.scss';
 
 .header {
-  height:6vh;
+  height: 6vh;
   background-color: $bg-color;
   position: fixed;
   width: 100%;
   top: 0;
   z-index: 5;
+  display: flex;
+  width: 100%;
 
   &_info {
     height: 100%;
@@ -15,12 +17,13 @@
     justify-content: center;
     align-items: center;
     width: 50%;
+    flex: 1;
 
     &_icon {
       height: 100%;
       display: inline-block;
-      
-      img{
+
+      img {
         height: 100%;
       }
     }
@@ -35,4 +38,80 @@
       }
     }
   }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.checkbox {
+  opacity: 0;
+  position: absolute;
+}
+
+.label {
+  width: 50px;
+  height: 26px;
+  background-color: #111;
+  display: flex;
+  border-radius: 50px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px;
+  position: relative;
+  transform: scale(1.5);
+  box-sizing: border-box;
+  border: 1px solid rgb(102, 252, 241);
+}
+
+.ball {
+  width: 20px;
+  height: 20px;
+  background-color: white;
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  border-radius: 50%;
+  transition: transform 0.2s linear;
+}
+
+.checkbox:checked+.label .ball {
+  transform: translateX(24px);
+  background-color:rgb(102, 252, 241);
+}
+
+.fa_moon {
+  color: rgb(102, 252, 241);
+  font-style: normal;
+}
+
+.fa_sun {
+  color: #fff;
+  font-style: normal;
+}
+
+.toggleButton {
+  display: flex;
+  flex: 1;
+  width: 100%;
+  justify-content: end;
+  align-items: center;
+  margin-right: 2rem;
+}
+
+.fas.fa_sun:before {
+  content: "\f185";
+  font-size: 1rem;
+}
+
+.fas.fa_moon:before {
+  content: "\f186";
+  font-size: 1rem;
+}
+
+.fas {
+  font-weight: 900;
+}
+.fa, .far, .fas {
+  font-family: "Font Awesome 6 Free";
 }

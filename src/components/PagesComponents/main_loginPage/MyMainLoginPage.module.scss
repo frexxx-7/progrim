@@ -1,6 +1,17 @@
 @import '../../../assets/scss/mixins.scss';
 @import '../../../assets/scss/variables.scss';
 
+
+.main_loginPage_exit {
+  @include button;
+  display: block;
+  text-decoration: none;
+  right: 2em;
+  margin: 0;
+  font-size: 1.2vw;
+  padding: 5px 20px;
+}
+
 .main {
   height: auto;
 
@@ -12,16 +23,6 @@
     justify-content: center;
     align-items: center;
     width: 12%;
-
-    .main_loginPage_exit {
-      @include button;
-      display: block;
-      text-decoration: none;
-      right: 2em;
-      margin: 0;
-      font-size: .8rem;
-      padding: 5px 20px;
-    }
   }
 
   &_div_loginPage {
@@ -122,6 +123,53 @@
   }
 }
 
+@media screen and (max-width: 1130px) {
+  .main_div_loginPage_form_mainDiv {
+    width: 100%;
+  }
+
+  .main_loginPage_exit {
+    font-size: 1.4vw;
+  }
+
+  .main_div_loginPage_form_mainDiv_sidebar_ul_li{
+    font-size: 1.7vw;
+  }
+}
+
+@media screen and (max-width: 860px) {
+  .main_loginPage_exit {
+    font-size: 1.4vw;
+    padding: 8px 15px;
+  }
+
+  .main_div_loginPage_form_mainDiv_sidebar_ul_li{
+    a{
+
+      p{
+        display: none;
+      }
+
+      div{
+        display: flex;  
+        justify-content: center;
+        width: 100%;
+
+        img{
+          width:6vw;
+        }
+      }
+    }
+  }
+  
+  .main_div_loginPage_form_mainDiv_sidebar{
+    width:10%;
+  }
+
+  .main_div_loginPage_form_mainDiv_content{
+    width: 89%;
+  }
+}
 
 @media screen and (max-width: 680px) {
   .main {
