@@ -1,0 +1,71 @@
+@import '../../assets/scss/mixins.scss';
+@import '../../assets/scss/variables.scss';
+
+.message {
+  width: 63vw;
+  box-sizing: border-box;
+  border: 1px solid rgba(102, 252, 241, 0.7);
+  border-radius: 30px;
+  vertical-align: top;
+  display: flex;
+
+  .chats {
+    width: 35%;
+    display: block;
+    box-sizing: border-box;
+    border-right: 1px solid rgba(102, 252, 241, 0.7);
+    height: 79vh;
+
+    .header {
+      display: flex;
+      border-bottom: 1px solid rgba(102, 252, 241, 0.7);
+      justify-content: center;
+
+      h2 {
+        @include font;
+        display: flex;
+        margin: .5rem 0;
+      }
+    }
+
+    .chatsList {
+      height: 90%;
+
+      .noChatsDiv {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+
+        .noChats {
+          @include font;
+          margin: 0;
+        }
+      }
+    }
+  }
+
+  .correspondence {
+    width: 64%;
+    height: 79vh;
+    display: inline-block;
+    box-sizing: border-box;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .chatsImage {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+
+      img {
+        width: 4rem;
+        height: 4rem;
+        display: inline-block;
+      }
+    }
+  }
+}

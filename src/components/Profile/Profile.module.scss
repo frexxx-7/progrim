@@ -1,0 +1,131 @@
+@import '../../assets/scss/mixins.scss';
+@import '../../assets/scss/variables.scss';
+
+.content {
+  width: 95%;
+  height: auto;
+
+  .profileHeader {
+    display: flex;
+    align-items: flex-end;
+    padding: 1rem 0;
+    border-bottom: 1px solid rgba(102, 252, 241);
+    justify-content: space-between;
+
+    .profile {
+      display: flex;
+      align-items: center;
+
+      a {
+        img {
+          cursor: pointer;
+          width: 9em;
+          height: auto;
+          object-fit: cover;
+          border-radius: 50%;
+          border: 4px solid rgba(102, 252, 241);
+        }
+      }
+
+      div {
+        text-align: left;
+
+        .nameStatus {
+          margin-left: 1em;
+
+          h2 {
+            @include font;
+            display: inline-block;
+            font-size: 2em;
+            margin: 0;
+            color: rgba(102, 252, 241);
+          }
+
+          p {
+            @include font;
+            font-size: .8em;
+            margin: 0;
+            margin-left: 1em;
+          }
+        }
+
+        .editProfile {
+          @include button;
+          display: inline-block;
+          margin: 1em 1.5em;
+          padding: .3em .5em;
+          font-size: .7rem;
+        }
+      }
+    }
+
+    .profileInfo {
+      height: 100%;
+      width: 20%;
+      display: flex;
+      justify-content: space-between;
+
+      .date {
+        display: flex;
+        align-items: flex-end;
+        @include font;
+        font-weight: normal;
+        font-size: 1rem;
+      }
+
+      .friends {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: 20%;
+
+        a {
+
+          &:hover {
+            cursor: pointer;
+          }
+          
+          img {
+            width: 2rem;
+          }
+
+          .friendNumber {
+            @include font;
+            font-weight: normal;
+            font-size: 1rem;
+            margin: 0;
+            text-align: center;
+          }
+        }
+      }
+    }
+  }
+
+  .posts {
+    h2 {
+      @include font;
+      margin: 0;
+      text-align: center;
+      margin-top: 1rem;
+    }
+
+    .createPosts {
+
+      input {
+        @include input;
+        width: 80%;
+        margin: 1rem 0;
+        text-align: left;
+        padding: 2px 5px;
+        border-radius: 10px;
+      }
+
+      .createPostsButton {
+        @include button;
+        font-size: .9rem;
+        padding: .5rem .6rem;
+        margin-left: .5rem;
+      }
+    }
+  }
+}
