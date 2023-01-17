@@ -38,8 +38,8 @@
 
     &_form_autorization {
       @include form;
-      height: 40%;
       width: 50%;
+      padding: 1rem;
 
       &_h2 {
         @include font;

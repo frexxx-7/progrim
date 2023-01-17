@@ -3,13 +3,15 @@
 
 .header {
   height: 6vh;
-  background-color: $bg-color;
+  background-color: var(--background-color-opacity);
   position: fixed;
   width: 100%;
   top: 0;
   z-index: 5;
   display: flex;
   width: 100%;
+  border-bottom: 1px solid var(--border-color);
+  transition: background-color 200ms linear;
 
   &_info {
     height: 100%;
@@ -25,6 +27,7 @@
 
       img {
         height: 100%;
+        transition: 10s linear;
       }
     }
 
@@ -52,7 +55,7 @@
 .label {
   width: 50px;
   height: 26px;
-  background-color: #111;
+  background-color: var(--background-body);
   display: flex;
   border-radius: 50px;
   align-items: center;
@@ -61,33 +64,38 @@
   position: relative;
   transform: scale(1.5);
   box-sizing: border-box;
-  border: 1px solid rgb(102, 252, 241);
+  border: 1px solid var(--border-color);
+  transition: backgrounde-color 500ms linear,
+    border 200ms linear;
 }
 
 .ball {
   width: 20px;
   height: 20px;
-  background-color: white;
+  background-color: var(--border-color);
   position: absolute;
   top: 2px;
   left: 2px;
   border-radius: 50%;
-  transition: transform 0.2s linear;
+  transition: transform 0.2s linear,
+    background-color 500ms linear;
 }
 
 .checkbox:checked+.label .ball {
   transform: translateX(24px);
-  background-color:rgb(102, 252, 241);
+  background-color: var(--border-color);
 }
 
 .fa_moon {
-  color: rgb(102, 252, 241);
+  color: var(--border-color);
   font-style: normal;
+  transition: color 500ms linear;
 }
 
 .fa_sun {
-  color: #fff;
+  color: var(--border-color);
   font-style: normal;
+  transition: color 500ms linear;
 }
 
 .toggleButton {
@@ -112,6 +120,9 @@
 .fas {
   font-weight: 900;
 }
-.fa, .far, .fas {
+
+.fa,
+.far,
+.fas {
   font-family: "Font Awesome 6 Free";
 }
