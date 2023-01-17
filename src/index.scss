@@ -1,3 +1,5 @@
+@import './assets/scss/variables.scss';
+
 body,
 html {
   margin: 0;
@@ -15,8 +17,9 @@ html {
   max-width: 100%;
 
   &_bg {
-    background-color: rgba(0, 0, 0, .8);
+    background-color: var(--background-body);
     height: auto;
+    transition: background-color 200ms linear;
   }
 }
 
@@ -58,7 +61,7 @@ html {
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: rgb(102, 252, 241);
+  background: var(--border-color);
   margin: -4px 0 0 -4px;
 }
 

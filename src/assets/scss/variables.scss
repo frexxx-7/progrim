@@ -1,3 +1,27 @@
-$bg-color:rgba(31, 40, 51, 0.8);
-$font-color: #c5c6c7;
-$border-color: rgba(102, 252, 241, 0.7);
+:root {
+  --background-color-opacity-dark: rgba(11, 12, 16, .8);
+  --background-color-dark: rgb(11, 12, 16);
+  --background-body-dark: rgba(0.5, 0, 0.5, .8);
+  --border-color-opacity-dark: rgba(102, 252, 241, 0.7);
+  --border-color-button-dark: rgba(102, 252, 241, 0.5);
+  --border-color-dark: rgb(102, 252, 241);
+  --font-color-dark: #c5c6c7;
+
+
+  --background-color-opacity-light: rgba(227, 226, 223, 0.8);
+  --background-color-light: rgb(227, 226, 223);
+  --background-body-light: rgba(254, 254, 254, .8);
+  --border-color-opacity-light: rgba(238, 76, 124, 0.7);
+  --border-color-button-light: rgba(238, 76, 124, 0.5);
+  --border-color-light: rgb(238, 76, 124);
+  --font-color-light: rgb(93, 0, 30);
+
+
+  --background-color-opacity: var(--background-color-opacity-dark);
+  --background-color: var(--background-color-dark);
+  --background-body: var(--background-body-dark);
+  --border-color-opacity: var(--border-color-opacity-dark);
+  --border-color-button: var(--border-color-button-dark);
+  --border-color: var(--border-color-dark);
+  --font-color: var(--font-color-dark);
+}

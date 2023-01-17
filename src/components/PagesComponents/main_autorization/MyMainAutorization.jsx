@@ -2,7 +2,8 @@ import React, { useState } from 'react'
 import classes from './MyMainAutorization.module.scss'
 import eye from "../../../assets/images/eye.png"
 import eye2 from "../../../assets/images/eye2.png"
-import icon from "../../../assets/images/icon.png"
+import icon_light from "../../../assets/images/icon-light.png"
+import icon_dark from "../../../assets/images/icon-dark.png"
 import google from "../../../assets/images/google.png"
 import { Link } from 'react-router-dom'
 
@@ -11,9 +12,11 @@ import { signInWithPopup, GoogleAuthProvider, signInWithEmailAndPassword } from 
 import { onValue, ref, update } from 'firebase/database'
 import useFirebase from '../../../hooks/useFirebase'
 import useUser from '../../../hooks/useUser'
+import useTheme from '../../../hooks/useTheme'
 
 export default function MyMainAutorization() {
   const { auth, database, storage } = useFirebase()
+  const [theme] = useTheme()
 
   const [hidePassword, setHidePassword] = useState(false)
   const [inputError, setInputError] = useState('')
@@ -43,7 +46,6 @@ export default function MyMainAutorization() {
         const user = result.user;
         update(ref(database, 'users/' + user.uid + '/userData'), {
           id: user.uid,
-          name: user.displayName,
         });
         const userData = ref(database, 'users/' + user.uid + '/userData');
         onValue(userData, async (snapshot) => {
@@ -54,6 +56,7 @@ export default function MyMainAutorization() {
                 update(ref(database, 'users/' + user.uid + '/userData'), {
                   photo: url,
                   date: user.metadata.creationTime,
+                  name: user.displayName,
                   status: ''
                 });
               })
@@ -84,7 +87,7 @@ export default function MyMainAutorization() {
     <main className={classes.main}>
       <div className={classes.main_icon}>
         <div className={classes.main_icon_div}>
-          <img src={icon} alt="Progrim" />
+          <img src={eval(`icon_${theme}`)} alt="Progrim" />
         </div>
       </div>
       <div className={classes.main_div_autorization}>
