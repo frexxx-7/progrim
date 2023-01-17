@@ -6,11 +6,12 @@
   height: 13%;
   margin-bottom: 1rem;
   padding: .5rem;
-  border: 2px solid rgb(102, 252, 241);
+  border: 2px solid var(--border-color);
   border-radius: 30px;
   box-sizing: border-box;
   display: flex;
   justify-content: space-between;
+  transition: border 200ms linear;
 
   a {
     display: flex;
@@ -24,7 +25,8 @@
         height: auto;
         object-fit: cover;
         border-radius: 50%;
-        border: 2px solid rgb(102, 252, 241);
+        border: 2px solid var(--border-color);
+        transition: border 300ms linear;
       }
     }
 
@@ -37,7 +39,8 @@
         font-size: 1rem;
         padding: 0;
         margin: 0;
-        color: rgb(102, 252, 241);
+        color: var(--border-color);
+        transition: color 500ms linear;
       }
 
       .quote {

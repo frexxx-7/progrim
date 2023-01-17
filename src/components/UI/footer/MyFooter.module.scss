@@ -73,12 +73,14 @@
           margin-left: 2.3em;
         }
         a {
+          @include font;
           font-size: 1em;
-          color:#66fcf1;
           font-weight: bold;
           text-decoration: none;
+          
           &:hover {
-            color: var(--font-color);
+            color: var(--border-color);
+            transition: color 200ms linear;
           }
         }
       }

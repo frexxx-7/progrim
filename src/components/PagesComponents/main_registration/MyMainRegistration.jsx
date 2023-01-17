@@ -1,16 +1,20 @@
 import React, { useState } from 'react'
 import classes from './MyMainRegistration.module.scss'
-import eye from "../../../assets/images/eye.png"
-import eye2 from "../../../assets/images/eye2.png"
+import eye_dark from "../../../assets/images/eye-dark.png"
+import eye2_dark from "../../../assets/images/eye2-dark.png"
+import eye_light from "../../../assets/images/eye-light.png"
+import eye2_light from "../../../assets/images/eye2-light.png"
 import { Link } from 'react-router-dom'
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { ref, set, update } from "firebase/database";
 import useFirebase from '../../../hooks/useFirebase'
 import { ref as refSt, getDownloadURL } from 'firebase/storage'
+import { useSelector } from 'react-redux'
 
 
 export default function MyMainRegistration() {
   const { auth, database, storage } = useFirebase()
+  const theme = useSelector(state => state.theme.theme)
 
   const [hidePassword, setHidePassword] = useState(false)
   const [input1, setInput1] = useState('')
@@ -25,12 +29,12 @@ export default function MyMainRegistration() {
     !hidePassword
       ?
       (
-        e.target.setAttribute('src', eye2),
+        e.target.setAttribute('src', eval(`eye2_${theme}`)),
         setHidePassword(true)
       )
       :
       (
-        e.target.setAttribute('src', eye),
+        e.target.setAttribute('src', eval(`eye_${theme}`)),
         setHidePassword(false)
       )
   }
@@ -111,7 +115,7 @@ export default function MyMainRegistration() {
                 onChange={(e) => setInput1(e.target.value)}
               />
               <img
-                src={eye}
+                src={eval(`eye_${theme}`)}
                 alt="eye"
                 className={classes.main_div_registration_form_div_img}
                 id="eye"

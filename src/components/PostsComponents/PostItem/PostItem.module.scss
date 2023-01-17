@@ -4,11 +4,12 @@
 .postItem {
   text-align: left;
   padding: 1em;
-  border: 2px solid rgb(102, 252, 241);
+  border: 2px solid var(--border-color);
   border-radius: 30px;
   margin: 1em 0;
   display: flex;
   justify-content: space-between;
+  transition: border 200ms linear;
 
   div {
     .authorInfo {
@@ -27,7 +28,8 @@
             height: auto;
             object-fit: cover;
             border-radius: 50%;
-            border: 2px solid rgb(102, 252, 241);
+            border: 2px solid var(--border-color);
+            transition: border 200ms linear;
           }
         }
 
@@ -40,7 +42,8 @@
             @include font;
             margin: 0;
             display: inline-block;
-            color: rgb(102, 252, 241);
+            color: var(--border-color);
+            transition: color 500ms linear;
           }
 
           p {

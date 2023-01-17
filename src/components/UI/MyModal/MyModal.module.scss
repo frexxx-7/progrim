@@ -7,17 +7,20 @@
   bottom: 0;
   right: 0;
   left: 0;
-  background: rgba(0,0,0,0.5);
+  background: var(--background-color-opacity);
   display: none;
+  transition: background 400ms linear;
 }
 
 .myModalContent {
   padding: 25px;
-  background: rgb(31, 40, 51);
+  background: var(--background-color);
   border-radius: 16px;
   min-width: 250px;
-  border: 2px solid rgba(102, 252, 241, 0.5);
+  border: 2px solid var(--border-color-button);
   box-shadow: 0 0 20px var(--border-color);
+  transition: border 400ms linear,
+    box-shadow 350ms linear;
 }
 
 .myModal.active {

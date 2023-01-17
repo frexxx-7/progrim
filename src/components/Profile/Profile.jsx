@@ -4,15 +4,20 @@ import LoaderTwo from '../UI/LoaderTwo'
 import MyModal from '../UI/MyModal/MyModal'
 import PostsList from '../PostsComponents/PostsList/PostsList'
 import EditPhoto from './EditPhoto/EditPhoto'
-import friends from "../../assets/images/friends.png"
+
+import friends_dark from "../../assets/images/friends-dark.png"
+import friends_light from "../../assets/images/friends-light.png"
+
 import ViewFriends from '../FriendsComponents/ViewFriends/ViewFriends'
 import useAddPosts from '../../hooks/useAddPosts';
 import useLoadPosts from '../../hooks/useLoadPosts';
 import useLoadFriends from '../../hooks/useLoadFriends';
 import useFirebase from '../../hooks/useFirebase'
+import { useSelector } from 'react-redux'
 
 const Profile = ({ id, name, photo, status, userID }) => {
   const { database } = useFirebase()
+  const theme = useSelector(state => state.theme.theme)
 
   const [loadingPosts, setLoadingPosts] = useState(true)
   const [loadingFriends, setLoadingFriends] = useState(true)
@@ -50,7 +55,7 @@ const Profile = ({ id, name, photo, status, userID }) => {
         <div className={classes.profileInfo}>
           <div className={classes.friends}>
             <a onClick={() => setModalFriends(true)}>
-              <img src={friends} alt="friends" />
+              <img src={eval(`friends_${theme}`)} alt="friends" />
               <p className={classes.friendNumber}>{frNumbers && Object.keys(frNumbers).length || 0}</p>
             </a>
             <MyModal visible={modalFriends} setVisible={setModalFriends}>

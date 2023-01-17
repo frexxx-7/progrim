@@ -1,12 +1,4 @@
-import React, { useEffect, useState } from 'react'
-
-const isDarkTheme = window?.matchMedia('(prefers-color-scheme: dark)').matches
-const defaultTheme = isDarkTheme ? 'dark' : 'light'
-
-const useTheme = () => {
-  const [theme, setTheme] = useState(localStorage.getItem('app-theme') || defaultTheme)
-
-  useEffect(() => {
+const useTheme = (theme) => {
     const backgroundColorOpacity = `var(--background-color-opacity-${theme}`
     const backgroundColor = `var(--background-color-${theme})`
     const backgroundBody = `var(--background-body-${theme})`
@@ -24,9 +16,6 @@ const useTheme = () => {
     document.body.style.setProperty('--border-color-button', borderColorButton)
     document.body.style.setProperty('--border-color', borderColor)
     document.body.style.setProperty('--font-color', fontColor)
-  }, [theme])
-
-  return [theme, setTheme]
 }
 
 export default useTheme

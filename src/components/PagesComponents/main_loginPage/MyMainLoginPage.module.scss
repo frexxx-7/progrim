@@ -95,8 +95,8 @@
               }
 
               a:hover {
-                background: rgb(31, 40, 51);
-                border: 1px solid rgba(102, 252, 241, 0.7);
+                background: var(--background-color);
+                border: 1px solid var(--border-color);
               }
             }
           }
@@ -111,8 +111,7 @@
 
           &_div {
             @include form;
-            box-shadow: none;
-            background-color: rgba(31, 40, 51, 0.8);
+            background-color: var(--background-color-opacity);
             width: 98%;
             min-height: 79.9vh;
             justify-content: inherit;

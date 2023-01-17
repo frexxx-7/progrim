@@ -1,10 +1,15 @@
 import React, { useState } from 'react'
 import classes from './MyMainAutorization.module.scss'
-import eye from "../../../assets/images/eye.png"
-import eye2 from "../../../assets/images/eye2.png"
+
+import eye_dark from "../../../assets/images/eye-dark.png"
+import eye2_dark from "../../../assets/images/eye2-dark.png"
+import eye_light from "../../../assets/images/eye-light.png"
+import eye2_light from "../../../assets/images/eye2-light.png"
 import icon_light from "../../../assets/images/icon-light.png"
 import icon_dark from "../../../assets/images/icon-dark.png"
-import google from "../../../assets/images/google.png"
+import google_dark from "../../../assets/images/google-dark.png"
+import google_light from '../../../assets/images/google-light.png'
+
 import { Link } from 'react-router-dom'
 
 import { ref as refSt, getDownloadURL } from 'firebase/storage'
@@ -12,11 +17,11 @@ import { signInWithPopup, GoogleAuthProvider, signInWithEmailAndPassword } from 
 import { onValue, ref, update } from 'firebase/database'
 import useFirebase from '../../../hooks/useFirebase'
 import useUser from '../../../hooks/useUser'
-import useTheme from '../../../hooks/useTheme'
+import { useSelector } from 'react-redux'
 
 export default function MyMainAutorization() {
   const { auth, database, storage } = useFirebase()
-  const [theme] = useTheme()
+  const theme = useSelector(state => state.theme.theme)
 
   const [hidePassword, setHidePassword] = useState(false)
   const [inputError, setInputError] = useState('')
@@ -29,12 +34,12 @@ export default function MyMainAutorization() {
     !hidePassword
       ?
       (
-        e.target.setAttribute('src', eye2),
+        e.target.setAttribute('src', eval(`eye2_${theme}`)),
         setHidePassword(true)
       )
       :
       (
-        e.target.setAttribute('src', eye),
+        e.target.setAttribute('src', eval(`eye_${theme}`)),
         setHidePassword(false)
       )
   }
@@ -117,7 +122,7 @@ export default function MyMainAutorization() {
                 id='password'
               />
               <img
-                src={eye}
+                src={eval(`eye_${theme}`)}
                 alt="eye"
                 className={classes.main_div_autorization_form_autorization_div_img}
                 onClick={(e) => changeInput(e)}
@@ -136,7 +141,7 @@ export default function MyMainAutorization() {
           <div
             className={classes.main_div_autorization_form_autorization_socialNetworks}
           >
-            <a onClick={googleLogin}><img src={google} alt="google" /></a>
+            <a onClick={googleLogin}><img src={eval(`google_${theme}`)} alt="google" /></a>
           </div>
         </form>
 

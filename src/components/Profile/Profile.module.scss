@@ -9,8 +9,9 @@
     display: flex;
     align-items: flex-end;
     padding: 1rem 0;
-    border-bottom: 1px solid rgba(102, 252, 241);
+    border-bottom: 1px solid var(--border-color);
     justify-content: space-between;
+    transition: border-bottom 500ms linear;
 
     .profile {
       display: flex;
@@ -23,7 +24,8 @@
           height: auto;
           object-fit: cover;
           border-radius: 50%;
-          border: 4px solid rgba(102, 252, 241);
+          border: 4px solid var(--border-color);
+          transition: border 500ms linear;
         }
       }
 
@@ -38,7 +40,8 @@
             display: inline-block;
             font-size: 2em;
             margin: 0;
-            color: rgba(102, 252, 241);
+            color: var(--border-color);
+            transition: color 200ms linear;
           }
 
           p {
@@ -83,7 +86,7 @@
           &:hover {
             cursor: pointer;
           }
-          
+
           img {
             width: 2rem;
           }
@@ -121,18 +124,21 @@
     }
   }
 }
+
 .createPostsButton {
   @include button;
   font-size: 1.2vw;
   padding: .5rem .6rem;
   margin-left: .5rem;
-  width:17%
+  width: 17%
 }
+
 @media screen and (max-width: 1130px) {
   .createPostsButton {
     font-size: 1.45vw;
   }
 }
+
 @media screen and (max-width: 860px) {
   .createPostsButton {
     font-size: 1.55vw;

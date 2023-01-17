@@ -1,12 +1,17 @@
 import React, { useEffect, useState } from 'react'
 import classes from './Messages.module.scss'
-import chats from '../../assets/images/chats.png'
+
+import chats_dark from '../../assets/images/chats-dark.png'
+import chats_light from '../../assets/images/chats-light.png'
+
 import { onValue, ref } from 'firebase/database'
 import LoaderTwo from '../UI/LoaderTwo'
 import useFirebase from '../../hooks/useFirebase'
+import { useSelector } from 'react-redux'
 
 const Messages = ({userId}) => {
   const { database } = useFirebase()
+  const theme = useSelector(state => state.theme.theme)
 
   const [messages, setMessages] = useState({})
   const [loadingMessages, setLoadingMessages] = useState(true)
@@ -37,7 +42,7 @@ const Messages = ({userId}) => {
 
       <div className={classes.correspondence}>
         <div className={classes.chatsImage}>
-          <img src={chats} alt="chats" />
+          <img src={eval(`chats_${theme}`)} alt="chats" />
         </div>
       </div>
     </div>
