@@ -50,10 +50,11 @@
         &_sidebar {
           width: 14%;
           height: 86vh;
-          border-right: 1px solid rgba(102, 252, 241, 0.7);
+          border-right: 1px solid var(--border-color-opacity);
           display: inline-block;
           vertical-align: top;
           padding-right: .3%;
+          transition: border-right 200ms linear;
 
           &_ul {
             margin: 0;

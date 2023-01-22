@@ -1,4 +1,4 @@
-import React, {useState } from 'react'
+import React, { useState } from 'react'
 import classes from './Profile.module.scss'
 import LoaderTwo from '../UI/LoaderTwo'
 import MyModal from '../UI/MyModal/MyModal'
@@ -14,6 +14,7 @@ import useLoadPosts from '../../hooks/useLoadPosts';
 import useLoadFriends from '../../hooks/useLoadFriends';
 import useFirebase from '../../hooks/useFirebase'
 import { useSelector } from 'react-redux'
+import { NavLink } from 'react-router-dom'
 
 const Profile = ({ id, name, photo, status, userID }) => {
   const { database } = useFirebase()
@@ -21,7 +22,7 @@ const Profile = ({ id, name, photo, status, userID }) => {
 
   const [loadingPosts, setLoadingPosts] = useState(true)
   const [loadingFriends, setLoadingFriends] = useState(true)
-  
+
   const [modalPhoto, setModalPhoto] = useState(false)
   const [modalFriends, setModalFriends] = useState(false)
 
@@ -42,13 +43,20 @@ const Profile = ({ id, name, photo, status, userID }) => {
         <div className={classes.profile}>
           <a><img onClick={() => setModalPhoto(true)} src={`${photo}`} alt="avatar" /></a>
           <MyModal visible={modalPhoto} setVisible={setModalPhoto}>
-            <EditPhoto photo={photo}/>
+            <EditPhoto photo={photo} />
           </MyModal>
           <div>
             <div className={classes.nameStatus}>
               <h2>{name}</h2>
               <p>{status}</p>
             </div>
+
+            <div className={classes.sendMessageDiv}>
+              <NavLink to={`/messages/${id}`} className={classes.linkMessages}>
+                <div className={classes.sendMessage}>Send message</div>
+              </NavLink>
+            </div>
+
           </div>
         </div>
 
@@ -59,7 +67,7 @@ const Profile = ({ id, name, photo, status, userID }) => {
               <p className={classes.friendNumber}>{frNumbers && Object.keys(frNumbers).length || 0}</p>
             </a>
             <MyModal visible={modalFriends} setVisible={setModalFriends}>
-              <ViewFriends id={id} setVisible={setModalFriends}/>
+              <ViewFriends id={id} setVisible={setModalFriends} />
             </MyModal>
           </div>
         </div>

@@ -5,10 +5,12 @@ const useLoadProfile = (database, setProfile, id, setLoading) => {
   useMemo(() => {
     if (id) {
       const userData = ref(database, 'users/' + id + '/userData');
-      onValue(userData, (snapshot) => {
+      setTimeout(() => {
+        onValue(userData, (snapshot) => {
         setProfile(snapshot.val())
         setLoading && setLoading(false)
       });
+      }, 100); 
     }
   }, [id])
 }

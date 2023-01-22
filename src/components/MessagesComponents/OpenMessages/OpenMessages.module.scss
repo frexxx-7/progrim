@@ -1,0 +1,123 @@
+@import '../../../assets/scss/mixins.scss';
+@import '../../../assets/scss/variables.scss';
+
+.OpenMessages {
+  height: 79vh;
+  width: 65%;
+  display: block;
+
+  .head {
+    height: 7%;
+    width: 100%;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+  }
+}
+
+.userName {
+  width: 40%;
+  display: flex;
+
+  a {
+    text-decoration: none;
+  }
+
+  p {
+    margin: 0;
+    padding: 0;
+    @include font;
+    color: var(--border-color);
+    text-align-last: left;
+    margin-left: .3rem;
+    display: inline-block;
+    transition: color 200ms linear;
+
+    &:hover {
+      color: var(--font-color);
+      transition: color 200ms linear;
+    }
+  }
+}
+
+.userInfo {
+  width: 60%;
+  height: 100%;
+}
+
+.userAvatar {
+  display: flex;
+  height: 100%;
+  justify-content: end;
+
+  a {
+    height: auto;
+    display: flex;
+    align-items: center;
+    margin-right: 1rem;
+  }
+
+  img {
+    max-height: 80%;
+    border-radius: 50%;
+    border: 1px solid var(--border-color);
+  }
+}
+
+.main {
+  height: 86%;
+  width: 100%;
+  overflow-y: auto;
+
+  scrollbar-width: .2rem;
+}
+
+.main::-webkit-scrollbar {
+  width: 5px;
+}
+
+.footer {
+  height: 7%;
+  width: 100%;
+  border-top: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+}
+
+.inputDiv {
+  width: 80%;
+
+  input {
+    @include input;
+    width: 95%;
+    box-shadow: none;
+    text-align: left;
+    border-width: 2px;
+  }
+}
+
+.sendButtonDiv {
+  width: 20%;
+
+  .sendButton {
+    @include button;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
+
+.inputDiv {
+  .errorInput::placeholder {
+    color: red;
+  }
+
+  .errorInput:-ms-input-placeholder {
+    color: red;
+  }
+
+  .errorInput::-ms-input-placeholder {
+    color: red;
+  }
+}

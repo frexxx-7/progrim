@@ -1,17 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import classes from './Messages.module.scss'
 
-import chats_dark from '../../assets/images/chats-dark.png'
-import chats_light from '../../assets/images/chats-light.png'
-
 import { onValue, ref } from 'firebase/database'
-import LoaderTwo from '../UI/LoaderTwo'
-import useFirebase from '../../hooks/useFirebase'
-import { useSelector } from 'react-redux'
+import LoaderTwo from '../../UI/LoaderTwo'
+import useFirebase from '../../../hooks/useFirebase'
+import MessagesItem from '../MessagesItem/MessagesItem'
 
-const Messages = ({userId}) => {
+const Messages = ({ userId, ComponetCh }) => {
   const { database } = useFirebase()
-  const theme = useSelector(state => state.theme.theme)
 
   const [messages, setMessages] = useState({})
   const [loadingMessages, setLoadingMessages] = useState(true)
@@ -35,16 +31,18 @@ const Messages = ({userId}) => {
           <h2>Chats</h2>
         </div>
         <div className={classes.chatsList}>
-            {loadingMessages ? <LoaderTwo /> : ''}
-            {!messages ? <div className={classes.noChatsDiv}><h2 className={classes.noChats}>No chats</h2></div> : ''}
-          </div>
-      </div>
-
-      <div className={classes.correspondence}>
-        <div className={classes.chatsImage}>
-          <img src={eval(`chats_${theme}`)} alt="chats" />
+          {loadingMessages ? <LoaderTwo /> : ''}
+          {!messages
+            ?
+            <div className={classes.noChatsDiv}><h2 className={classes.noChats}>No chats</h2></div>
+            :
+            messages && Object.entries(messages).map(([key, value]) => (
+              <MessagesItem userId={userId} key={key} id={value.messageData.id} date={value.messageData.date} lastMessage={value.messageData.lastMessage} />
+            ))
+          }
         </div>
       </div>
+      {ComponetCh}
     </div>
   )
 }

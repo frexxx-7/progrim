@@ -56,7 +56,7 @@
           @include button;
           display: inline-block;
           margin: 1em 1.5em;
-          font-size: .7rem;
+          font-size: .8rem;
         }
       }
     }
@@ -110,18 +110,18 @@
       text-align: center;
       margin-top: 1rem;
     }
+  }
+}
 
-    .createPosts {
+.createPosts {
 
-      input {
-        @include input;
-        width: 80%;
-        margin: 1rem 0;
-        text-align: left;
-        padding: 2px 5px;
-        border-radius: 10px;
-      }
-    }
+  input {
+    @include input;
+    width: 80%;
+    margin: 1rem 0;
+    text-align: left;
+    padding: 2px 5px;
+    border-radius: 10px;
   }
 }
 
@@ -131,6 +131,39 @@
   padding: .5rem .6rem;
   margin-left: .5rem;
   width: 17%
+}
+
+.linkMessages {
+  text-decoration: none;
+  margin: 1rem;
+  width:100%;
+}
+
+.sendMessageDiv {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .sendMessage {
+    @include button;
+    display: inline-block;
+    font-size: .8rem;
+    margin: 0;
+  }
+}
+
+.createPosts {
+  .errorInput::placeholder {
+    color: red;
+  }
+
+  .errorInput:-ms-input-placeholder {
+    color: red;
+  }
+
+  .errorInput::-ms-input-placeholder {
+    color: red;
+  }
 }
 
 @media screen and (max-width: 1130px) {

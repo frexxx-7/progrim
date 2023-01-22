@@ -99,10 +99,21 @@
   }
 }
 
+.buttons {
+  display: flex;
+  width: 50%;
+  justify-content: space-around;
+
+  a{
+    display: flex;
+    width: 40%;
+  }
+}
+
 .deleteDiv {
   display: flex;
   align-items: center;
-  width: 25%;
+  width: 40%;
   justify-content: center;
 
   .delete {
@@ -110,6 +121,22 @@
     display: inline-block;
     font-size: .8rem;
     margin: 0;
+    width: 100%;
+  }
+}
+
+.sendMessageDiv {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: center;
+
+  .sendMessage {
+    @include button;
+    display: inline-block;
+    font-size: .8rem;
+    margin: 0;
+    width: 100%;
   }
 }
 
