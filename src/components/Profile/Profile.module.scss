@@ -61,46 +61,7 @@
       }
     }
 
-    .profileInfo {
-      height: 100%;
-      width: 20%;
-      display: flex;
-      justify-content: space-between;
 
-      .date {
-        display: flex;
-        align-items: flex-end;
-        @include font;
-        font-weight: normal;
-        font-size: 1rem;
-      }
-
-      .friends {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        height: 20%;
-
-        a {
-
-          &:hover {
-            cursor: pointer;
-          }
-
-          img {
-            width: 2rem;
-          }
-
-          .friendNumber {
-            @include font;
-            font-weight: normal;
-            font-size: 1rem;
-            margin: 0;
-            text-align: center;
-          }
-        }
-      }
-    }
   }
 
   .posts {
@@ -113,7 +74,50 @@
   }
 }
 
+.profileInfo {
+  height: 100%;
+  width: 20%;
+  display: flex;
+  justify-content: space-between;
+
+  .date {
+    display: flex;
+    align-items: flex-end;
+    @include font;
+    font-weight: normal;
+    font-size: 1rem;
+  }
+
+  .friends {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 20%;
+
+    a {
+
+      &:hover {
+        cursor: pointer;
+      }
+
+      img {
+        width: 2rem;
+      }
+
+      .friendNumber {
+        @include font;
+        font-weight: normal;
+        font-size: 1rem;
+        margin: 0;
+        text-align: center;
+      }
+    }
+  }
+}
+
 .createPosts {
+  display: flex;
+  align-items: center;
 
   input {
     @include input;
@@ -136,7 +140,7 @@
 .linkMessages {
   text-decoration: none;
   margin: 1rem;
-  width:100%;
+  width: 100%;
 }
 
 .sendMessageDiv {
@@ -175,5 +179,32 @@
 @media screen and (max-width: 860px) {
   .createPostsButton {
     font-size: 1.55vw;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .profileInfo {
+    width: 30%;
+  }
+}
+
+@media screen and (max-width: 620px) {
+  .createPostsButton {
+    font-size: 1rem;
+  }
+}
+
+@media screen and (max-width: 545px) {
+  .content {
+    .profileHeader {
+      flex-direction: column;
+      justify-content: start;
+      align-items: start;
+    }
+  }
+
+  .profileInfo {
+    width: 100%;
+    justify-content: space-evenly;
   }
 }

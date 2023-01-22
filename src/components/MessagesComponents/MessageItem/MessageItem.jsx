@@ -2,6 +2,7 @@ import React from 'react'
 import classes from './MessageItem.module.scss'
 
 const MessageItem = ({ body, date, author, profile, myProfile, idUser }) => {
+  
   const getDate = (date) => {
     const timePost = new Date(date).toLocaleTimeString().slice(0, -3)
     const datePost = new Date(date).toLocaleDateString()

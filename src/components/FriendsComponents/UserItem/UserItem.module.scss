@@ -53,23 +53,29 @@
       }
     }
   }
+}
 
+.add {
+  display: flex;
+  width: 20%;
+  align-items: center;
+  justify-content: center;
+
+  .addButton {
+    @include button;
+    display: inline-block;
+    font-size: .8rem;
+    margin: 0;
+  }
+
+  .checkMark {
+    display: inline-block;
+    height: 100%;
+  }
+}
+
+@media screen and (max-width: 620px) {
   .add {
-    display: flex;
-    width: 20%;
-    align-items: center;
-    justify-content: center;
-
-    .addButton {
-      @include button;
-      display: inline-block;
-      font-size: .8rem;
-      margin: 0;
-    }
-
-    .checkMark {
-      display: inline-block;
-      height: 100%;
-    }
+    width: 30%;
   }
 }

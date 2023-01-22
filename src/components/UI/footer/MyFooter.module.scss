@@ -87,7 +87,7 @@
     }
   }
 }
-@media screen and (max-width: 920px) {
+@media screen and (max-width: 935px) {
   .footer {
     font-size: .8em;
   }
@@ -97,6 +97,14 @@
     font-size: .7em;
   }
 }
+
+@media screen and (max-width: 780px) {
+  .footer_name {
+    flex:none;
+    width:30%;
+  }
+}
+
 @media screen and (max-width: 680px) {
   .footer {
     display: none;

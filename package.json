@@ -6,11 +6,16 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "startBrow":"browser-sync start --proxy progrim"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.2.1",
+    "@fortawesome/free-solid-svg-icons": "^6.2.1",
+    "@fortawesome/react-fontawesome": "^0.2.0",
     "@redux-devtools/extension": "^3.2.5",
     "@reduxjs/toolkit": "^1.9.1",
+    "browser-sync": "^2.27.11",
     "classnames": "^2.3.2",
     "firebase": "^9.15.0",
     "react": "^18.2.0",

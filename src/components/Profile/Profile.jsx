@@ -63,7 +63,7 @@ const Profile = ({ id, name, photo, status, userID }) => {
         <div className={classes.profileInfo}>
           <div className={classes.friends}>
             <a onClick={() => setModalFriends(true)}>
-              <img src={eval(`friends_${theme}`)} alt="friends" />
+              <img src={`/friends-${theme}.png`} alt="friends" />
               <p className={classes.friendNumber}>{frNumbers && Object.keys(frNumbers).length || 0}</p>
             </a>
             <MyModal visible={modalFriends} setVisible={setModalFriends}>
@@ -81,6 +81,7 @@ const Profile = ({ id, name, photo, status, userID }) => {
             placeholder='Text posts...'
             value={textPost}
             onChange={(e) => setTextPost(e.target.value)}
+            id='inputPosts'
           />
           <button
             className={classes.createPostsButton}
@@ -88,7 +89,11 @@ const Profile = ({ id, name, photo, status, userID }) => {
               useAddPosts(database, id, setTextPost, textPost, userID)
             }}
           >
-            Create post
+            {
+              window.innerWidth <= 620
+                ? '+'
+                : 'Create post'
+            }
           </button>
         </div>
 

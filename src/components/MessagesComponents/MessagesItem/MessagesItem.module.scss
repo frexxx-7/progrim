@@ -19,13 +19,13 @@
   display: flex;
 
   .message {
-    width: 83%;
+    width: 80%;
   }
 
   .user {
     display: flex;
     align-items: center;
-    width:17%;
+    width: 3em;
 
     img {
       width: 3em;
@@ -36,17 +36,13 @@
       transition: border 200ms linear;
     }
   }
-
-  .nameDate {
-    display: flex;
-    width: 100%;
-  }
 }
 
 .userMessage {
   font-size: 1vw;
   color: var(--border-color);
   transition: color 200ms linear;
+  margin-left: .3rem;
 }
 
 .messageUser {
@@ -54,14 +50,19 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
-  max-width:80%;
+  max-width: 80%;
+}
+
+.nameDate {
+  display: flex;
+  width: 100%;
 }
 
 .dataName {
   display: flex;
-  margin-left: .5rem;
   width: 68%;
   height: auto;
+  margin-left: .3rem;
 
   h6 {
     @include font;
@@ -83,7 +84,7 @@
     @include font;
     font-size: .7vw;
     margin: 0;
-    margin-left: 1rem;
+    font-weight: normal;
   }
 }
 
@@ -94,6 +95,83 @@
   display: flex;
   word-break: break-all;
   opacity: 0.5;
-  margin-left: .5rem;
+  margin-left: .2rem;
   width: 100%;
+}
+
+@media screen and (max-width: 1130px) {
+  .dataDate {
+    p{
+      font-size: .9vw;
+    }
+  }
+  .userMessage {
+    font-size: 1.2vw;
+  }
+  .messageUser {
+    font-size: 1.2vw;
+  }
+  .dataName {
+    h6{
+      font-size: 1.5vw;
+    }
+  }
+}
+@media screen and (max-width: 860px) {
+  .lastMessage{
+    display: none;
+  }
+  .dataDate{
+    display: none;
+  }
+  .nameDate{
+    height: 100%;
+  }
+  .dataName{
+    height: 100%;
+    align-items: center;
+    margin-left: .7rem;
+    width: 100%;
+    h6{
+      width: 100%;
+    }
+  }
+}
+@media screen and (max-width: 680px) {
+  .userInfo{
+    justify-content: center;
+  }
+  .message{
+    display: none;
+  }
+}
+@media screen and (max-width: 620px) {
+  .message{
+    display: block;
+  }
+  .lastMessage{
+    display: flex;
+  }
+  .dataDate{
+    display: flex;
+  }
+  .nameDate{
+    height: auto;
+  }
+  .dataName{
+    h6{
+      font-size: 3vw;
+    }
+  }
+  .dataDate {
+    p{
+      font-size: 2vw;
+    }
+  }
+  .userMessage {
+    font-size: 2.5vw;
+  }
+  .messageUser{
+    font-size: 2.5vw;
+  }
 }

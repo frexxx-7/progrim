@@ -21,7 +21,7 @@ const FriendItem = ({ idFriend, deleteFr, idUser, setVisible }) => {
   }
 
   if (isLoading)
-    return <LoaderTwo />
+    return <div style={{height:"20%"}}><LoaderTwo /></div>
 
   return (
     <div className={classes.user}>
@@ -37,16 +37,23 @@ const FriendItem = ({ idFriend, deleteFr, idUser, setVisible }) => {
       {deleteFr
         ?
         <div className={classes2.buttons}>
-          <NavLink to={`/messages/${profile.id}`}>
-            <div className={classes2.sendMessageDiv}>
-              <div className={classes2.sendMessage}>Send message</div>
-            </div>
+          <NavLink to={`/messages/${profile.id}`} className={classes2.sendMessageA}>
+            {
+              window.innerWidth<=620
+              ? <i className="fa-regular fa-envelope"></i>
+              : 'Send message'
+            }
+           
           </NavLink>
 
 
-          <div className={classes2.deleteDiv} onClick={deleteFriend}>
-            <a className={classes2.delete} >Delete</a>
-          </div>
+          <a className={classes2.delete} onClick={deleteFriend}>
+            {
+              window.innerWidth<=620
+              ? <i className="fa-solid fa-trash"></i>
+              : 'Delete'
+            }
+          </a>
 
         </div>
         :

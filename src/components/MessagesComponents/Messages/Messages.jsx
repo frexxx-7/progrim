@@ -26,7 +26,7 @@ const Messages = ({ userId, ComponetCh }) => {
 
   return (
     <div className={classes.message}>
-      <div className={classes.chats}>
+      <div className={classes.chats} id="chats">
         <div className={classes.header}>
           <h2>Chats</h2>
         </div>

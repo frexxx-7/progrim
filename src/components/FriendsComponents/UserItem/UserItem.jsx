@@ -9,10 +9,10 @@ const UserItem = ({ id, name, photo, status, idUser }) => {
 
   const addFriend = () => {
     update(ref(database, 'users/' + idUser + '/friends/'), {
-      [`${id}`]:id
+      [`${id}`]: id
     });
     update(ref(database, 'users/' + id + '/friends/'), {
-      [`${idUser}`]:idUser
+      [`${idUser}`]: idUser
     });
   }
 
@@ -29,7 +29,13 @@ const UserItem = ({ id, name, photo, status, idUser }) => {
       </NavLink>
 
       <div className={classes.add}>
-        <a className={classes.addButton} onClick={addFriend}>Add</a>
+        <a className={classes.addButton} onClick={addFriend}>
+          {
+            window.innerWidth <= 620
+              ? <i className="fa-solid fa-user-plus"></i>
+              : 'Add'
+          }
+          </a>
       </div>
 
     </div>

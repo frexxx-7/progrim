@@ -85,9 +85,22 @@ const OpenMessages = ({ idUser }) => {
     }, 0);
   }
 
+  const openChants = () => {
+    const chats = document.getElementById('chats')
+    chats.style.display = 'block'
+  }
+
   useEffect(() => {
     if (profile)
       loadMessages()
+    if (window, innerWidth <= 620) {
+      const chats = document.getElementById('chats')
+      chats.style.display = 'none'
+      const openMessage = document.getElementById('openMessage')
+      openMessage && setTimeout(() => {
+        openMessage.style.display = 'block'
+      }, 0);
+    }
   }, [profile])
 
   useEffect(() => {
@@ -95,49 +108,50 @@ const OpenMessages = ({ idUser }) => {
   }, [messages])
 
   if (loadingMessages || isLoading || isMyLoading) {
-    return <div style={{ width: "65%" }}>
+    return <div className={classes.loader}>
       <LoaderTwo />
     </div>
   }
 
-  if(profile)
-  return (
-    <div className={classes.OpenMessages}>
-      <div className={classes.head}>
-        <div className={classes.userName}>
-          <NavLink to={`/profile/${profile.id}`}> <p>{profile.name}</p> </NavLink>
+  if (profile)
+    return (
+      <div className={classes.OpenMessages} id="openMessage">
+        <div className={classes.head}>
+          <div className={classes.userName}>
+            {window.innerWidth<=620 ?  <NavLink to={`/messages`} onClick={openChants} className={classes.openChants}>{'<'}</NavLink> : ''}
+            <NavLink to={`/profile/${profile.id}`}> <p>{profile.name}</p> </NavLink>
+          </div>
+          <div className={classes.userInfo}>
+            <div className={classes.userAvatar}>
+              <NavLink to={`/profile/${profile.id}`}><img src={profile.photo} alt="avatar" /> </NavLink>
+            </div>
+          </div>
         </div>
-        <div className={classes.userInfo}>
-          <div className={classes.userAvatar}>
-            <NavLink to={`/profile/${profile.id}`}><img src={profile.photo} alt="avatar" /> </NavLink>
+
+        <div className={classes.main} id='main'>
+          {messages && Object.entries(messages).map(([key, value]) => (
+            <MessageItem key={key} body={value.body} date={value.date} author={value.author} profile={profile} myProfile={myProfile} idUser={idUser} />
+          ))}
+        </div>
+
+        <div className={classes.footer}>
+          <div className={classes.inputDiv}>
+            <input
+              type="text"
+              value={textMessage}
+              onChange={(e) => setTextMessage(e.target.value)}
+              onKeyUp={(e) => e.key === 'Enter' ? createDatabaseMessage() : ''}
+              placeholder='Write a message...'
+              id='inputMessage'
+            />
+          </div>
+
+          <div className={classes.sendButtonDiv}>
+            <button className={classes.sendButton} onClick={createDatabaseMessage} onSubmit={(e) => e.preventDefault()}>Send</button>
           </div>
         </div>
       </div>
-
-      <div className={classes.main} id='main'>
-        {messages && Object.entries(messages).map(([key, value]) => (
-          <MessageItem key={key} body={value.body} date={value.date} author={value.author} profile={profile} myProfile={myProfile} idUser={idUser} />
-        ))}
-      </div>
-
-      <div className={classes.footer}>
-        <div className={classes.inputDiv}>
-          <input
-            type="text"
-            value={textMessage}
-            onChange={(e) => setTextMessage(e.target.value)}
-            onKeyUp={(e) => e.key === 'Enter' ? createDatabaseMessage() : ''}
-            placeholder='Write a message...'
-            id='inputMessage'
-          />
-        </div>
-
-        <div className={classes.sendButtonDiv}>
-          <button className={classes.sendButton} onClick={createDatabaseMessage} onSubmit={(e) => e.preventDefault()}>Send</button>
-        </div>
-      </div>
-    </div>
-  )
+    )
 }
 
 export default React.memo(OpenMessages)
