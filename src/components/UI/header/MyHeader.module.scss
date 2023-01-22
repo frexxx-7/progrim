@@ -19,7 +19,6 @@
     justify-content: center;
     align-items: center;
     width: 50%;
-    flex: 1;
 
     &_icon {
       height: 100%;
@@ -100,8 +99,7 @@
 
 .toggleButton {
   display: flex;
-  flex: 1;
-  width: 100%;
+  width: 50%;
   justify-content: end;
   align-items: center;
   margin-right: 2rem;
@@ -125,4 +123,12 @@
 .far,
 .fas {
   font-family: "Font Awesome 6 Free";
+}
+@media screen and (max-width: 525px) {
+  .header_info{
+    width:70%;
+  }
+  .toggleButton{
+    width: 30%;
+  }
 }

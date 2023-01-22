@@ -11,8 +11,20 @@ const Friends = ({ ComponentCh }) => {
       <div className={classes.friendsNavbar}>
         <div className={classes.friendsNavbarDiv}>
           <ul className={classes.friendsButtons}>
-            <li><Link to={`/friends`}>My friends</Link></li>
-            <li><Link to={`/friends/search`}>Search friends</Link></li>
+            <li><Link to={`/friends`}>
+              {
+                window.innerWidth <= 620
+                  ? <i className="fa-solid fa-user-group"></i>
+                  : 'My friends'
+              }
+              </Link></li>
+            <li><Link to={`/friends/search`}>
+              {
+                window.innerWidth <= 620
+                  ? <i className="fa-solid fa-magnifying-glass"></i>
+                  : 'Search friends'
+              }
+            </Link></li>
           </ul>
         </div>
       </div>

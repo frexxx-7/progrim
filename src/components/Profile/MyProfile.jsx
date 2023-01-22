@@ -5,10 +5,6 @@ import LoaderTwo from '../UI/LoaderTwo'
 import MyModal from '../UI/MyModal/MyModal'
 import PostsList from '../PostsComponents/PostsList/PostsList'
 import classes from './Profile.module.scss'
-
-import friends_dark from "../../assets/images/friends-dark.png"
-import friends_light from "../../assets/images/friends-light.png"
-
 import ViewFriends from '../FriendsComponents/ViewFriends/ViewFriends'
 import useFirebase from '../../hooks/useFirebase'
 import useLoadProfile from '../../hooks/useLoadProfile'
@@ -90,7 +86,7 @@ const MyProfile = ({ user }) => {
         <div className={classes.profileInfo}>
           <div className={classes.friends}>
             <a onClick={() => setModalFriends(true)}>
-              <img src={eval(`friends_${theme}`)} alt="friends" />
+              <img src={`/friends-${theme}.png`} alt="friends" />
               <p className={classes.friendNumber}>{frNumbers && Object.keys(frNumbers).length || 0}</p>
             </a>
             <MyModal visible={modalFriends} setVisible={setModalFriends}>
@@ -121,7 +117,11 @@ const MyProfile = ({ user }) => {
               useAddPosts(database, myProfile.id, setTextPost, textPost, myProfile.id)
             }}
           >
-            Create post
+            {
+              window.innerWidth <= 620
+                ? '+'
+                : 'Create post'
+            }
           </button>
         </div>
 

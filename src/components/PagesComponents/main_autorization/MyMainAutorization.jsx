@@ -1,17 +1,6 @@
 import React, { useState } from 'react'
 import classes from './MyMainAutorization.module.scss'
-
-import eye_dark from "../../../assets/images/eye-dark.png"
-import eye2_dark from "../../../assets/images/eye2-dark.png"
-import eye_light from "../../../assets/images/eye-light.png"
-import eye2_light from "../../../assets/images/eye2-light.png"
-import icon_light from "../../../assets/images/icon-light.png"
-import icon_dark from "../../../assets/images/icon-dark.png"
-import google_dark from "../../../assets/images/google-dark.png"
-import google_light from '../../../assets/images/google-light.png'
-
 import { Link } from 'react-router-dom'
-
 import { ref as refSt, getDownloadURL } from 'firebase/storage'
 import { signInWithPopup, GoogleAuthProvider, signInWithEmailAndPassword } from "firebase/auth"
 import { onValue, ref, update } from 'firebase/database'
@@ -34,12 +23,12 @@ export default function MyMainAutorization() {
     !hidePassword
       ?
       (
-        e.target.setAttribute('src', eval(`eye2_${theme}`)),
+        e.target.setAttribute('src', `./eye2-${theme}.png`),
         setHidePassword(true)
       )
       :
       (
-        e.target.setAttribute('src', eval(`eye_${theme}`)),
+        e.target.setAttribute('src', `./eye-${theme}.png`),
         setHidePassword(false)
       )
   }
@@ -92,7 +81,7 @@ export default function MyMainAutorization() {
     <main className={classes.main}>
       <div className={classes.main_icon}>
         <div className={classes.main_icon_div}>
-          <img src={eval(`icon_${theme}`)} alt="Progrim" />
+          <img src={`/icon-${theme}.png`} alt="Progrim" />
         </div>
       </div>
       <div className={classes.main_div_autorization}>
@@ -122,7 +111,7 @@ export default function MyMainAutorization() {
                 id='password'
               />
               <img
-                src={eval(`eye_${theme}`)}
+                src={`./eye-${theme}.png`}
                 alt="eye"
                 className={classes.main_div_autorization_form_autorization_div_img}
                 onClick={(e) => changeInput(e)}
@@ -141,7 +130,7 @@ export default function MyMainAutorization() {
           <div
             className={classes.main_div_autorization_form_autorization_socialNetworks}
           >
-            <a onClick={googleLogin}><img src={eval(`google_${theme}`)} alt="google" /></a>
+            <a onClick={googleLogin}><img src={`./google-${theme}.png`} alt="google" /></a>
           </div>
         </form>
 

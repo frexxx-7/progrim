@@ -2,14 +2,27 @@
 @import '../../../assets/scss/variables.scss';
 
 .editPhoto {
-  width:500px;
+  width: 500px;
   height: 500px;
 
   img {
     width: 100%;
     height: 100%;
   }
+
   .EditPhotoInput {
     @include button;
+  }
+}
+
+@media screen and (max-width: 570px) {
+  .editPhoto {
+    width: auto;
+    height: 85vw;
+
+    img {
+      width: 85vw;
+      height: 85vw;
+    }
   }
 }

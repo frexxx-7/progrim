@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import { useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import useFirebase from '../../../hooks/useFirebase'
 import useLoadProfile from '../../../hooks/useLoadProfile'
@@ -10,8 +9,8 @@ const MessagesItem = ({ id, lastMessage, userId }) => {
   const { database } = useFirebase()
 
   const [profile, setProfile] = useState()
-  const [loading, setLoading] = useState()
   const [myProfile, setMyProfile] = useState()
+  const [loading, setLoading] = useState()
   const [isLoading, setIsLoading] = useState()
 
   const getDate = (date) => {

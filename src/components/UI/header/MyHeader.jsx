@@ -1,9 +1,5 @@
 import React, { useEffect } from 'react'
 import classes from './MyHeader.module.scss'
-
-import icon_light from '../../../assets/images/icon-light.png'
-import icon_dark from '../../../assets/images/icon-dark.png'
-
 import classNames from 'classnames';
 import '../../../assets/scss/variables.scss';
 import { useDispatch, useSelector } from 'react-redux'
@@ -34,7 +30,7 @@ export default function MyHeader() {
   return (
     <header className={classes.header}>
       <div className={classes.header_info}>
-        <div className={classes.header_info_icon}><img src={eval(`icon_${theme}`)} alt={"Progrim"} /></div>
+        <div className={classes.header_info_icon}><img src={`/icon-${theme}.png`} alt={"Progrim"} /></div>
         <div className={classes.header_info_name}><p>Progrim</p></div>
       </div>
       <div className={classes.toggleButton}>
