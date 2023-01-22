@@ -25,7 +25,7 @@ const FriendItem = ({ idFriend, deleteFr, idUser, setVisible }) => {
 
   return (
     <div className={classes.user}>
-      <NavLink to={`/profile/${profile.id}`} onClick={()=>setVisible && setVisible(false)}>
+      <NavLink to={`/profile/${profile.id}`} onClick={() => setVisible && setVisible(false)}>
         <div className={classes.photo}>
           <img src={profile.photo} alt="photo" />
         </div>
@@ -36,8 +36,18 @@ const FriendItem = ({ idFriend, deleteFr, idUser, setVisible }) => {
       </NavLink>
       {deleteFr
         ?
-        <div className={classes2.deleteDiv} onClick={deleteFriend}>
-          <a className={classes2.delete} >Delete</a>
+        <div className={classes2.buttons}>
+          <NavLink to={`/messages/${profile.id}`}>
+            <div className={classes2.sendMessageDiv}>
+              <div className={classes2.sendMessage}>Send message</div>
+            </div>
+          </NavLink>
+
+
+          <div className={classes2.deleteDiv} onClick={deleteFriend}>
+            <a className={classes2.delete} >Delete</a>
+          </div>
+
         </div>
         :
         ''

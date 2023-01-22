@@ -1,0 +1,152 @@
+@import '../../../assets/scss/mixins.scss';
+@import '../../../assets/scss/variables.scss';
+
+.messageItemMyMessage {
+  width: 100%;
+  height: auto;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  padding: .2rem .4rem;
+  box-sizing: border-box;
+}
+
+.messageUserMessage {
+  width: 100%;
+  height: auto;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  padding: .2rem .4rem;
+  box-sizing: border-box;
+}
+
+.messageItemMyContainer {
+  max-width: 88%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid var(--border-color);
+  border-radius: 15px;
+  padding: .5rem;
+}
+
+.messageUserContainer {
+  max-width: 88%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid var(--border-color);
+  border-radius: 15px;
+  padding: .5rem;
+}
+
+.myMessageItem {
+  height: auto;
+  max-width: 100%;
+  display: flex;
+  justify-content: end;
+  flex-direction: column;
+}
+
+.messageItem {
+  height: auto;
+  max-width: 100%;
+  display: flex;
+  justify-content: start;
+  flex-direction: column;
+}
+
+.myImage {
+  height: auto;
+  order: 2;
+  width: 12%;
+
+  img {
+    max-height: 3rem;
+    border-radius: 50%;
+    border: 2px solid var(--border-color);
+    transition: border 500ms linear;
+  }
+}
+
+.image {
+  height: auto;
+  width: 12%;
+
+  img {
+    max-height: 3rem;
+    border-radius: 50%;
+    border: 2px solid var(--border-color);
+    transition: border 500ms linear;
+  }
+}
+
+.myInfo {
+  height: 1rem;
+  display: flex;
+  justify-content: end;
+}
+
+.info {
+  height: 1rem;
+  display: flex;
+  justify-content: start;
+}
+
+.myDate {
+  @include font;
+  margin: 0;
+  font-size: .8rem;
+  font-weight: normal;
+  order: 1;
+}
+
+.date {
+  @include font;
+  margin: 0;
+  font-size: .8rem;
+  font-weight: normal;
+}
+
+.myBody {
+  display: flex;
+  justify-content: end;
+  max-width: 100%;
+
+  p {
+    @include font;
+    margin: 0;
+    max-width: 100%;
+    display: inline-block;
+    font-size: 1rem;
+    font-weight: normal;
+    color: var(--border-color);
+    transition: color 200ms linear;
+    word-wrap: break-word;
+    text-align: left;
+  }
+}
+
+.body {
+  display: flex;
+  justify-content: start;
+  max-width: 100%;
+
+  p {
+    @include font;
+    margin: 0;
+    max-width: 100%;
+    display: inline-block;
+    font-size: 1rem;
+    font-weight: normal;
+    color: var(--border-color);
+    transition: color 200ms linear;
+    word-wrap: break-word;
+    text-align: left;
+  }
+}

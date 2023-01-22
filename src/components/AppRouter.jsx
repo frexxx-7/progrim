@@ -7,8 +7,10 @@ import Friends from './FriendsComponents/Friends/Friends'
 import FriendsList from './FriendsComponents/FriendsList'
 import useUser from '../hooks/useUser'
 import SearchFriends from "./FriendsComponents/SearchFriends"
-import Messages from "./Messages/Messages"
+import Messages from "./MessagesComponents/Messages/Messages"
 import LoadProfile from "./Profile/LoadProfile"
+import ChatsImage from './MessagesComponents/ChatsImage'
+import OpenMessages from './MessagesComponents/OpenMessages/OpenMessages'
 
 const AppRouter = () => {
   const user = useUser()
@@ -37,7 +39,11 @@ const AppRouter = () => {
         />} />
 
         <Route path='/messages' element={<LoginPage
-          ComponentCh={<Messages userId={user.uid} />}
+          ComponentCh={<Messages userId={user.uid} ComponetCh={<ChatsImage />}/>}
+        />} />
+
+        <Route path='/messages/:id' element={<LoginPage 
+          ComponentCh={<Messages userId={user.uid} ComponetCh={<OpenMessages idUser={user.uid}/>} />}
         />} />
 
         <Route path='/profile/:id' element={<LoginPage

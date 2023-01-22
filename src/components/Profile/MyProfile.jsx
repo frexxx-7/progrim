@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import EditPhoto from './EditPhoto/EditPhoto'
 import EditProfile from './EditProfile/EditProfile'
 import LoaderTwo from '../UI/LoaderTwo'
@@ -15,12 +15,14 @@ import useLoadProfile from '../../hooks/useLoadProfile'
 import useLoadPosts from '../../hooks/useLoadPosts'
 import useAddPosts from '../../hooks/useAddPosts'
 import useLoadFriends from '../../hooks/useLoadFriends'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { setUser } from '../../redux/userReducer'
 
 const MyProfile = ({ user }) => {
   const { database } = useFirebase()
   const [myProfile, setMyProfile] = useState({})
   const theme = useSelector(state => state.theme.theme)
+  const dispatch = useDispatch()
 
   const [loadingFriends, setLoadingFriends] = useState(true)
   const [loadingPosts, setLoadingPosts] = useState(true)
@@ -41,6 +43,10 @@ const MyProfile = ({ user }) => {
   useLoadPosts(database, myProfile.id, setPosts, setLoadingPosts)
 
   useLoadFriends(database, myProfile.id, setFrNumbers, setLoadingFriends)
+
+  useEffect(() => {
+    myProfile && dispatch(setUser(myProfile))
+  }, [myProfile])
 
   if (loadingPosts || loadingFriends || loadingProfile)
     return <LoaderTwo />
@@ -75,7 +81,7 @@ const MyProfile = ({ user }) => {
               Edit profile
             </a>
             <MyModal visible={modalEditProfile} setVisible={setModalEditProfile}>
-              <EditProfile profile={myProfile} setVisible={setModalEditProfile} userId={user.uid}/>
+              <EditProfile profile={myProfile} setVisible={setModalEditProfile} userId={user.uid} />
             </MyModal>
           </div>
         </div>
@@ -106,6 +112,8 @@ const MyProfile = ({ user }) => {
             placeholder='Text posts...'
             value={textPost}
             onChange={(e) => setTextPost(e.target.value)}
+            onKeyUp={(e) => e.key === 'Enter' ? useAddPosts(database, myProfile.id, setTextPost, textPost, myProfile.id) : ''}
+            id='inputPosts'
           />
           <button
             className={classes.createPostsButton}
@@ -118,7 +126,7 @@ const MyProfile = ({ user }) => {
         </div>
 
         <div className={classes.postsList}>
-          <PostsList posts={posts && Object.entries(posts)} deleteTr={true} userId={user.uid}/>
+          <PostsList posts={posts && Object.entries(posts)} deleteTr={true} userId={user.uid} />
         </div>
       </div>
     </div>

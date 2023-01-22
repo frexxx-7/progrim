@@ -1,0 +1,99 @@
+@import '../../../assets/scss/mixins.scss';
+@import '../../../assets/scss/variables.scss';
+
+.messageItem {
+  text-align: left;
+  padding: .7em;
+  border: 2px solid var(--border-color);
+  border-radius: 30px;
+  margin: 1em 0;
+  display: flex;
+  justify-content: space-between;
+  transition: border 200ms linear;
+  text-decoration: none;
+  margin: .2rem;
+}
+
+.userInfo {
+  width: 100%;
+  display: flex;
+
+  .message {
+    width: 83%;
+  }
+
+  .user {
+    display: flex;
+    align-items: center;
+    width:17%;
+
+    img {
+      width: 3em;
+      height: auto;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 2px solid var(--border-color);
+      transition: border 200ms linear;
+    }
+  }
+
+  .nameDate {
+    display: flex;
+    width: 100%;
+  }
+}
+
+.userMessage {
+  font-size: 1vw;
+  color: var(--border-color);
+  transition: color 200ms linear;
+}
+
+.messageUser {
+  font-size: 1vw;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width:80%;
+}
+
+.dataName {
+  display: flex;
+  margin-left: .5rem;
+  width: 68%;
+  height: auto;
+
+  h6 {
+    @include font;
+    margin: 0;
+    display: inline-block;
+    color: var(--border-color);
+    transition: color 500ms linear;
+    font-size: 1.2vw;
+  }
+}
+
+.dataDate {
+  height: auto;
+  display: flex;
+  height: auto;
+  width: 32%;
+
+  p {
+    @include font;
+    font-size: .7vw;
+    margin: 0;
+    margin-left: 1rem;
+  }
+}
+
+.lastMessage {
+  @include font;
+  font-size: 1rem;
+  margin-top: .4rem;
+  display: flex;
+  word-break: break-all;
+  opacity: 0.5;
+  margin-left: .5rem;
+  width: 100%;
+}

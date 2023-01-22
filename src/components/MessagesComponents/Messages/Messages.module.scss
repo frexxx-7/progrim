@@ -1,5 +1,5 @@
-@import '../../assets/scss/mixins.scss';
-@import '../../assets/scss/variables.scss';
+@import '../../../assets/scss/mixins.scss';
+@import '../../../assets/scss/variables.scss';
 
 .message {
   width: 63vw;
@@ -49,7 +49,7 @@
   }
 
   .correspondence {
-    width: 64%;
+    width: 65%;
     height: 79vh;
     display: inline-block;
     box-sizing: border-box;
