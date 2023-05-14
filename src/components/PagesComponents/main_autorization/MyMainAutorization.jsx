@@ -47,6 +47,7 @@ export default function MyMainAutorization() {
             const storageRef = refSt(storage, `avatars/no-avatar.jpg`)
             getDownloadURL(storageRef)
               .then((url) => {
+                console.log(url);
                 update(ref(database, 'users/' + user.uid + '/userData'), {
                   photo: url,
                   date: user.metadata.creationTime,
