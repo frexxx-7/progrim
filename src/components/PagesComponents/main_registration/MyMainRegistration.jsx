@@ -6,6 +6,7 @@ import { ref, set, update } from "firebase/database";
 import useFirebase from '../../../hooks/useFirebase'
 import { ref as refSt, getDownloadURL } from 'firebase/storage'
 import { useSelector } from 'react-redux'
+import MyFooter from '../../UI/footer/MyFooter';
 
 
 export default function MyMainRegistration() {
@@ -67,6 +68,7 @@ export default function MyMainRegistration() {
   }
 
   return (
+    <>
     <main className={classes.main}>
       <form action="" onSubmit={(e) => e.preventDefault()}>
         <Link to="/autorization"
@@ -139,5 +141,7 @@ export default function MyMainRegistration() {
         </button>
       </div>
     </main>
+    {/*<MyFooter/>*/}
+    </>
   )
 }

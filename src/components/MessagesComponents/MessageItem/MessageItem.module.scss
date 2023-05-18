@@ -67,7 +67,8 @@
   width: 12%;
 
   img {
-    max-height: 3rem;
+    height: 3rem;
+    width: 3rem;
     border-radius: 50%;
     border: 2px solid var(--border-color);
     transition: border 500ms linear;
@@ -79,7 +80,8 @@
   width: 12%;
 
   img {
-    max-height: 3rem;
+    height: 3rem;
+    width: 3rem;
     border-radius: 50%;
     border: 2px solid var(--border-color);
     transition: border 500ms linear;

@@ -7,6 +7,7 @@ import { onValue, ref, update } from 'firebase/database'
 import useFirebase from '../../../hooks/useFirebase'
 import useUser from '../../../hooks/useUser'
 import { useSelector } from 'react-redux'
+import MyFooter from '../../UI/footer/MyFooter'
 
 export default function MyMainAutorization() {
   const { auth, database, storage } = useFirebase()
@@ -47,7 +48,6 @@ export default function MyMainAutorization() {
             const storageRef = refSt(storage, `avatars/no-avatar.jpg`)
             getDownloadURL(storageRef)
               .then((url) => {
-                console.log(url);
                 update(ref(database, 'users/' + user.uid + '/userData'), {
                   photo: url,
                   date: user.metadata.creationTime,
@@ -79,6 +79,7 @@ export default function MyMainAutorization() {
 
 
   return (
+    <>
     <main className={classes.main}>
       <div className={classes.main_icon}>
         <div className={classes.main_icon_div}>
@@ -149,5 +150,7 @@ export default function MyMainAutorization() {
         </form>
       </div>
     </main>
+    <MyFooter/>
+    </>
   )
 }

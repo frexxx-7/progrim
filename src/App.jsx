@@ -16,7 +16,6 @@ function App() {
       <div className='app_bg'>
         <MyHeader />
         <Loader />
-        <MyFooter />
       </div>
     )
   }
@@ -26,7 +25,6 @@ function App() {
       <div className='app_bg'>
         <MyHeader />
         <AppRouter />
-        <MyFooter />
       </div>
     </BrowserRouter>
   )
