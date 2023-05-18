@@ -48,6 +48,7 @@
     border-bottom: 1px solid var(--border-color);
     justify-content: center;
     transition: border-bottom 300ms linear;
+    height: 7%;
 
     h2 {
       @include font;

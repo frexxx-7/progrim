@@ -4,14 +4,17 @@ import LoaderTwo from '../UI/LoaderTwo'
 import UsersList from './UsersList/UsersList'
 import useFirebase from '../../hooks/useFirebase'
 import useLoadFriends from '../../hooks/useLoadFriends'
+import { useSelector } from 'react-redux'
 
 const SearchFriends = ({idUser}) => {
   const { database } = useFirebase()
+
 
   const [friends, setFriends] = useState({})
   const [loadingFriend, setLoadingFriend] = useState(true)
 
   useLoadFriends(database, idUser, setFriends, setLoadingFriend)
+
 
   return (
     <>

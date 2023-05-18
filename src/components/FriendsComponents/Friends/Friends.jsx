@@ -1,8 +1,16 @@
-import React from 'react'
+import React, { useState } from 'react'
 import classes from './Friends.module.scss'
 import { Link } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { setSearchQuery } from '../../../redux/searchQueryReducer'
 
-const Friends = ({ ComponentCh }) => {
+const Friends = ({ ComponentCh, visibleSearch }) => {
+  const dispatch = useDispatch()
+
+  const changeSearchQuery = (searchQuery) => {
+    dispatch(setSearchQuery(searchQuery))
+  }
+
   return (
     <div className={classes.friends}>
       <div className={classes.friendsList}>
@@ -17,7 +25,7 @@ const Friends = ({ ComponentCh }) => {
                   ? <i className="fa-solid fa-user-group"></i>
                   : 'My friends'
               }
-              </Link></li>
+            </Link></li>
             <li><Link to={`/friends/search`}>
               {
                 window.innerWidth <= 620
@@ -25,6 +33,19 @@ const Friends = ({ ComponentCh }) => {
                   : 'Search friends'
               }
             </Link></li>
+            {
+              visibleSearch ?
+              <li>
+              <input
+                type="text"
+                onChange={(e) => changeSearchQuery(e.target.value)}
+                className={classes.searchInput}
+                placeholder='Search'
+              />
+            </li>
+              :
+              ""
+            }
           </ul>
         </div>
       </div>

@@ -3,7 +3,7 @@
 
 .friends {
   width: 63vw;
-  height: 79.9vh;
+  height: 79vh;
   display: flex;
   border: 1px solid var(--border-color);
   border-radius: 30px;
@@ -42,7 +42,7 @@
   padding: 0;
   display: inline-block;
   width: 80%;
-  height: 20vh;
+  height: 30vh;
 
   li {
     border-radius: 15px;
@@ -130,6 +130,15 @@ a.sendMessageA {
   display: inline-block;
   font-size: .8rem;
   margin: 0;
+}
+.frinedsListFriend{
+  overflow-y: auto;
+}
+
+.searchInput{
+  @include input;
+  text-align: left;
+  width: 100%;
 }
 
 @media screen and (max-width: 1130px) {

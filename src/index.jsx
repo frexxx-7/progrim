@@ -9,9 +9,9 @@ import { store } from './redux/store'
 const root = ReactDOM.createRoot(document.getElementById('root'))
 
 root.render(
-    <FirebaseProvider>
-      <Provider store={store}>
+  <FirebaseProvider>
+    <Provider store={store}>
         <App />
-      </Provider>
-    </FirebaseProvider>
+    </Provider>
+  </FirebaseProvider>
 )

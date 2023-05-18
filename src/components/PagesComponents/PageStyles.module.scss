@@ -1,0 +1,28 @@
+@import '../../assets/scss/mixins.scss';
+@import '../../assets/scss/variables.scss';
+
+.progrim, .rules, .developers{
+  min-height: 100vh;
+}
+.backButton{
+  @include button;
+  margin-top: 7vh;
+  position: fixed;
+  text-decoration: none;
+}
+.progrimMain, .rulesMain, .developersMain{
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  @include font;
+  color: var(--border-color);
+  flex-direction: column;
+  min-height: 86vh;
+  padding-top: 7vh;
+
+  p{
+    max-width: 50%;
+    font-size: 16px;
+  }
+}

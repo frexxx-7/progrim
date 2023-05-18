@@ -4,6 +4,7 @@ import useFirebase from '../../../hooks/useFirebase'
 import LoaderTwo from '../../UI/LoaderTwo'
 import UserItem from '../UserItem/UserItem'
 import classes from './UsersList.module.scss'
+import { useSelector } from 'react-redux'
 
 const UsersList = ({ myFriends, idUser }) => {
   const { database } = useFirebase()
@@ -11,6 +12,8 @@ const UsersList = ({ myFriends, idUser }) => {
   const [usersList, setUsersList] = useState({})
   const [loadingUsers, setLoadingUsers] = useState(true)
   const [usersData, setUsersData] = useState([{}])
+
+  const searchQuery = useSelector(state => state.searchQuery.searchQuery)
 
   const loadUsers = () => {
     const userData = ref(database, 'users');
@@ -46,14 +49,28 @@ const UsersList = ({ myFriends, idUser }) => {
         {usersData.map((userDataMap) => {
           if (myFriends && myFriends.find(e => e === userDataMap.id))
             return ''
-          return userDataMap.id !== idUser && <UserItem
-            key={`${userDataMap.id}`}
-            id={userDataMap.id}
-            name={userDataMap.name}
-            photo={userDataMap.photo}
-            status={userDataMap.status}
-            idUser= {idUser}
-          />
+          return searchQuery != '' ?
+            userDataMap.name.toUpperCase().includes(searchQuery.toUpperCase()) ?
+              userDataMap.id !== idUser && <UserItem
+                key={`${userDataMap.id}`}
+                id={userDataMap.id}
+                name={userDataMap.name}
+                photo={userDataMap.photo}
+                status={userDataMap.status}
+                idUser={idUser}
+              />
+              :
+              ""
+
+            :
+            userDataMap.id !== idUser && <UserItem
+              key={`${userDataMap.id}`}
+              id={userDataMap.id}
+              name={userDataMap.name}
+              photo={userDataMap.photo}
+              status={userDataMap.status}
+              idUser={idUser}
+            />
         })}
       </div>
     </div>

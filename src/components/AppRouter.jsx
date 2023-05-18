@@ -11,6 +11,9 @@ import Messages from "./MessagesComponents/Messages/Messages"
 import LoadProfile from "./Profile/LoadProfile"
 import ChatsImage from './MessagesComponents/ChatsImage'
 import OpenMessages from './MessagesComponents/OpenMessages/OpenMessages'
+import Progrim from './PagesComponents/Progrim/Progrim'
+import Rules from './PagesComponents/Rules/Rules'
+import Developers from './PagesComponents/Developers/Developers'
 
 const AppRouter = () => {
   const user = useUser()
@@ -28,6 +31,7 @@ const AppRouter = () => {
           ComponentCh={<Friends
             ComponentCh={<FriendsList
               id={user.uid}
+            visibleSearch={false}
             />}
           />}
         />} />
@@ -35,20 +39,22 @@ const AppRouter = () => {
         <Route path='/friends/search' element={<LoginPage
           ComponentCh={<Friends
             ComponentCh={<SearchFriends idUser={user.uid} />}
+          visibleSearch={true}
           />}
         />} />
 
         <Route path='/messages' element={<LoginPage
-          ComponentCh={<Messages userId={user.uid} ComponetCh={<ChatsImage />}/>}
+          ComponentCh={<Messages userId={user.uid} ComponetCh={<ChatsImage />} />}
         />} />
 
-        <Route path='/messages/:id' element={<LoginPage 
-          ComponentCh={<Messages userId={user.uid} ComponetCh={<OpenMessages idUser={user.uid}/>} />}
+        <Route path='/messages/:id' element={<LoginPage
+          ComponentCh={<Messages userId={user.uid} ComponetCh={<OpenMessages idUser={user.uid} />} />}
         />} />
 
         <Route path='/profile/:id' element={<LoginPage
           ComponentCh={<LoadProfile userId={user.uid} />}
         />} />
+
 
         <Route path="*" element={<Navigate to={`/profile`} />} />
       </Routes>
@@ -61,7 +67,9 @@ const AppRouter = () => {
             key={index}
           />
         )}
-
+        <Route path="/progrim" element={<Progrim/>} />
+        <Route path="/rules" element={<Rules/>} />
+        <Route path="/developers" element={<Developers/>} />
         <Route path="*" element={<Navigate to="/autorization" />} />
       </Routes>
   )

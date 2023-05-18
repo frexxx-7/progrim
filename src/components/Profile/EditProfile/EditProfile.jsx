@@ -8,11 +8,13 @@ const EditProfile = ({ setVisible, userId, profile }) => {
 
   const [loginInput, setLoginInput] = useState(profile.name)
   const [quoteInput, setQuoteInput] = useState(profile.status)
+  const [ageInput, setAgeInput] = useState(profile.age!=undefined ? profile.age : '')
 
   const changeProfile = () => {
     update(ref(database, 'users/' + userId + '/userData'), {
       name: loginInput,
-      status: quoteInput
+      status: quoteInput,
+      age: ageInput
     });
   }
 
@@ -33,6 +35,13 @@ const EditProfile = ({ setVisible, userId, profile }) => {
             type="text"
             value={quoteInput}
             onChange={(e) => setQuoteInput(e.target.value)}
+          />
+        </div> <div>
+          <h4>Age:</h4>
+          <input
+            type="text"
+            value={ageInput}
+            onChange={(e) => setAgeInput(e.target.value)}
           />
         </div>
         <div className={classes.divSaveButton}>
