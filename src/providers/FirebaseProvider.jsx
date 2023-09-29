@@ -6,14 +6,7 @@ import { getStorage } from "firebase/storage";
 import { useAuthState } from 'react-firebase-hooks/auth';
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCMaYLvzgGSK1gRxhuRjiP6gH0k1Dx9MpU",
-  authDomain: "progrim-app.firebaseapp.com",
-  projectId: "progrim-app",
-  messagingSenderId: "1090627444543",
-  appId: "1:1090627444543:web:d7bd9a83456be1f01ebd8a",
-  measurementId: "G-2MZ0FWH5KW",
-  databaseURL: 'https://progrim-app-default-rtdb.europe-west1.firebasedatabase.app',
-  storageBucket: 'gs://progrim-app.appspot.com'
+  //
 }
 
 const app = initializeApp(firebaseConfig)
