@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux'
 import { setSearchQuery } from '../../../redux/searchQueryReducer'
 
 const Friends = ({ ComponentCh, visibleSearch }) => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const changeSearchQuery = (searchQuery) => {
     dispatch(setSearchQuery(searchQuery))
